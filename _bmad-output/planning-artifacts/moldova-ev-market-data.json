@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "generated": "2026-04-29",
+    "last_updated": "2026-04-29",
+    "agent": "Mary — Business Analyst (bmad-analyst)",
+    "sources_retrieved": "live web research",
+    "notes": "Comprehensive Moldova EV charging operator research conducted. All known public operators identified and catalogued. Tariffs retrieved directly from operator websites where available. Road tax rates provided by stakeholder. EVPoint confirmed as market leader; eCharge Moldova tariffs not publicly listed (app-only); OMV Petrom/Renovatio announced Moldova entry in 2024 but Moldova station data unconfirmed."
+  },
+
+  "fuel_prices_MDL_per_liter": {
+    "source": "ANRE (anre.md) — reference price set 28 April 2026, applicable from 29 April 2026",
+    "confidence": "HIGH — retrieved directly from ANRE official site",
+    "benzina_95": 29.38,
+    "motorina": 30.13,
+    "gaz_lichefiat_range": {
+      "min": 15.50,
+      "max": 15.97,
+      "note": "Range observed across ANRE-published station prices; not a single fixed reference price"
+    }
+  },
+
+  "ev_charging_operators_overview": {
+    "research_date": "2026-04-29",
+    "summary": "As of April 2026, three active public charging networks have been confirmed operating in Moldova. EVPoint is the dominant player. eCharge Moldova operates a B2B platform with app-only pricing. EVGP operates 3 DC fast-charge stations. OMV Petrom/Renovatio announced Moldova expansion in mid-2024 but public Moldova-specific station/tariff data was not accessible. Plugpoint (Romanian) is available as an app in Moldova but station presence is unconfirmed.",
+    "operators": ["EVPoint", "EVGP", "eCharge Moldova"],
+    "unconfirmed_potential_entrants": ["OMV Petrom / Renovatio", "Plugpoint"]
+  },
+
+  "ev_charging_tariffs": {
+    "EVPoint": {
+      "source": "evpoint.md/ro/tarife — retrieved live 29 April 2026",
+      "confidence": "HIGH — retrieved directly from EVPoint official tariff page",
+      "status": "ACTIVE — confirmed market leader",
+      "legal_entity": "EV Point S.R.L.",
+      "website": "https://evpoint.md",
+      "network_size": "120+ stations, 270+ charging points (as of Dec 2023; actively expanding)",
+      "connector_types": ["Type 1", "Type 2", "GB/T", "CHAdeMO", "CCS"],
+      "max_power_kW": 150,
+      "max_power_notes": "150 kW DC available in Chișinău; lower power at other locations",
+      "unit": "MDL per EV (1 EV = 1 kWh conventional billing unit, prices include TVA)",
+      "billing_note": "EV is a conventional billing unit equal to 1 kWh consumption. Prices listed are 'from' — individual station tariffs may differ. Always verify before charging.",
+      "regions": {
+        "Centru": {
+          "AC_standard_from_MDL": 7.44,
+          "DC_fast_from_MDL": 9.48
+        },
+        "Sud": {
+          "AC_standard_from_MDL": 7.44,
+          "DC_fast_from_MDL": 9.48
+        },
+        "Nord": {
+          "AC_standard_from_MDL": 7.80,
+          "DC_fast_from_MDL": 10.44
+        }
+      },
+      "waiting_fee": {
+        "amount_MDL_per_hour": 15,
+        "grace_period_minutes": 15,
+        "description": "Applied after 15 minutes post-charge completion"
+      },
+      "payment_methods": "Prepaid balance top-up via Victoriabank (card); RFID card available on request",
+      "contact": {
+        "phone": "+373 60 60 99 00",
+        "support_email": "support@evpoint.md",
+        "sales_email": "sales@evpoint.md"
+      },
+      "app": {
+        "ios": "https://apps.apple.com/md/app/evpoint-moldova/id1536107978",
+        "android": "https://play.google.com/store/apps/details?id=com.evpoint.md"
+      }
+    },
+    "EVGP": {
+      "source": "evgp.md — retrieved live 29 April 2026",
+      "confidence": "HIGH — retrieved directly from EVGP official site",
+      "status": "ACTIVE — 3 confirmed stations",
+      "website": "https://evgp.md",
+      "unit": "MDL per kWh",
+      "price_per_kWh_MDL": 8.90,
+      "charger_power_kW": 120,
+      "connector_types": ["CCS", "GB/T"],
+      "payment_methods": "RFID card + iOS/Android app + online payment",
+      "stations": [
+        {
+          "city": "Bălți",
+          "address": "str. Orhei 5",
+          "availability": "24/7"
+        },
+        {
+          "city": "Chișinău",
+          "address": "str. Varnița 8",
+          "availability": "24/7"
+        },
+        {
+          "city": "Chișinău",
+          "address": "str. Calea Orheiului 36",
+          "availability": "24/7"
+        }
+      ]
+    },
+    "eCharge_Moldova": {
+      "source": "echarge.md — retrieved live 29 April 2026",
+      "confidence": "LOW for tariffs (not published) — HIGH for operator existence",
+      "status": "ACTIVE — operator confirmed, tariffs app-only",
+      "legal_entity": "ECAR CONCEPT SRL",
+      "idno": "1019600058756",
+      "website": "https://echarge.md",
+      "address": "or. Chișinău, str. Calea Moșilor 28, Rodaris Office, of. 205",
+      "unit": "MDL (exact tariff not publicly disclosed)",
+      "price_per_kWh_MDL": null,
+      "tariff_availability": "Tariffs are only visible within the mobile app after registration. No public pricing page found on website.",
+      "connector_types": "Not publicly listed",
+      "payment_methods": "Mobile app (iOS + Android) + RFID card",
+      "platform_type": "B2B + end-user platform — manages third-party station infrastructure",
+      "contact": {
+        "phone": "+373 69 764 764",
+        "email": "sales@echarge.md"
+      },
+      "app": {
+        "ios": "https://apps.apple.com/md/app/echarge-moldova/id6458590354",
+        "android": "https://play.google.com/store/apps/details?id=md.echarge"
+      },
+      "research_notes": "eCharge Moldova (ECAR CONCEPT SRL) is a B2B-oriented integrated EV charging platform. Their website focuses on attracting location partners rather than publishing consumer tariffs. Pricing is set per station by location operators and only visible in the app post-login. No pricing found on website, Facebook, or any public source."
+    },
+    "OMV_Petrom_Renovatio": {
+      "source": "autoblog.md article — 3 June 2024",
+      "confidence": "LOW — announced entry, Moldova-specific stations unconfirmed",
+      "status": "ANNOUNCED — expansion into Moldova planned as of mid-2024",
+      "legal_entity": "OMV Petrom S.A. (acquired Renovatio Asset Management, Romania)",
+      "website": "https://www.omvpetrom.md",
+      "price_per_kWh_MDL": null,
+      "tariff_availability": "No Moldova-specific tariff page found. Romanian tariffs apply in Romania; Moldova pricing unknown.",
+      "connector_types": "Multiple (22 kW AC to 360 kW DC in Romanian network)",
+      "research_notes": "OMV Petrom acquired Renovatio Asset Management (largest EV charging network in Romania, 400+ charge points) in June 2024. Company announced goal of 1,000 charge points across Romania, Bulgaria, Serbia, and Moldova by end of 2024. No confirmed Moldova station data or tariff pages were accessible at time of research. OMV Petrom Moldova website (omvpetrom.md) did not load."
+    },
+    "Plugpoint": {
+      "source": "Apple App Store (Moldova region) + plugpoint.ro — reviewed 29 April 2026",
+      "confidence": "LOW — app available in Moldova App Store; physical station presence unconfirmed",
+      "status": "UNCONFIRMED — app available but Moldova stations not verified",
+      "legal_entity": "Charge Point SRL (Bucharest, Romania)",
+      "website": "https://plugpoint.ro",
+      "price_per_kWh_MDL": null,
+      "tariff_availability": "No Moldova-specific tariffs found. Plugpoint.ro is a Romanian B2B EV charging hardware/software company.",
+      "research_notes": "Plugpoint mobile app is listed on the Apple App Store for Moldova. The developer is Charge Point SRL, a Romanian company providing EV charging hardware and software to businesses. It is unclear whether they operate any stations in Moldova or merely supply equipment used by Moldovan operators."
+    }
+  },
+
+  "ev_road_tax_annual": {
+    "status": "PROVIDED BY STAKEHOLDER",
+    "confidence": "MEDIUM — provided by Dumitru Volosciuc; not independently verified against official Fiscal Code text",
+    "basis": "Moldova Fiscal Code Title IX, Annex 2 — taxa pentru folosirea drumurilor, per kg of masa totală autorizată (maximum allowed weight)",
+    "unit": "MDL per kg of maximum allowed weight (masa totală autorizată), charged annually",
+    "rate_table": [
+      { "weight_range_kg": "1 – 1500",  "rate_MDL_per_kg": 0.6 },
+      { "weight_range_kg": "1501 – 2500", "rate_MDL_per_kg": 0.9 },
+      { "weight_range_kg": "2501 – 3500", "rate_MDL_per_kg": 1.2 },
+      { "weight_range_kg": "3501 – 4500", "rate_MDL_per_kg": 1.5 },
+      { "weight_range_kg": "4501+",       "rate_MDL_per_kg": 1.8 }
+    ],
+    "example_calculations": [
+      { "vehicle_max_weight_kg": 1800, "applicable_rate_MDL_per_kg": 0.9, "annual_tax_MDL": 1620 },
+      { "vehicle_max_weight_kg": 2200, "applicable_rate_MDL_per_kg": 0.9, "annual_tax_MDL": 1980 },
+      { "vehicle_max_weight_kg": 2500, "applicable_rate_MDL_per_kg": 0.9, "annual_tax_MDL": 2250 }
+    ],
+    "calculation_method": "Flat rate: the rate corresponding to the vehicle's masa totală autorizată bracket is applied to the full weight in kg. Annual tax = masa_totală_autorizată_kg × rate_MDL_per_kg.",
+    "note": "Rates provided by Dumitru Volosciuc. Verify against Annex 2 of Title IX of Codul Fiscal nr. 1163/1997 or via the SFS road tax calculator at https://sfs.md."
+  }
+}
