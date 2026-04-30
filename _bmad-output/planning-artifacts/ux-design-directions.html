@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moldova EV Overview — UX Design Directions</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #080a0f; color: #f8fafc; min-height: 100vh; }
+
+    /* ── Nav ── */
+    .nav { position: sticky; top: 0; z-index: 100; background: #0f1117cc; backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e2230; padding: 12px 24px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .nav-title { font-size: 13px; color: #94a3b8; margin-right: 8px; }
+    .nav button { font-size: 12px; font-family: inherit; padding: 6px 14px; border-radius: 20px; border: 1px solid #2a2f3e;
+      background: transparent; color: #94a3b8; cursor: pointer; transition: all .2s; }
+    .nav button:hover, .nav button.active { background: #2dd4bf22; color: #2dd4bf; border-color: #2dd4bf66; }
+
+    /* ── Direction panels ── */
+    .direction { display: none; }
+    .direction.active { display: block; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 1 — "Signal" (chosen direction)
+       Full-bleed dark, display headline, single column
+    ══════════════════════════════════════════════════ */
+    .d1 { background: #0f1117; }
+    .d1 .badge { display: inline-block; background: #2dd4bf22; color: #2dd4bf; border: 1px solid #2dd4bf44;
+      font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 3px 10px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .d1 header { position: sticky; top: 53px; background: #0f1117ee; backdrop-filter: blur(8px);
+      border-bottom: 1px solid #1e2230; padding: 0 24px; display: flex; align-items: center; gap: 32px; height: 56px; }
+    .d1 header .logo { font-weight: 800; font-size: 15px; color: #2dd4bf; letter-spacing: -.01em; }
+    .d1 header nav { display: flex; gap: 24px; }
+    .d1 header nav a { font-size: 13px; color: #64748b; text-decoration: none; transition: color .2s; }
+    .d1 header nav a:hover { color: #2dd4bf; }
+    .d1 header .lang { margin-left: auto; background: #1a1d27; border: 1px solid #2a2f3e; color: #94a3b8;
+      font-size: 12px; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+
+    .d1 .hero { padding: 80px 24px 64px; max-width: 720px; margin: 0 auto; }
+    .d1 .hero-label { font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .d1 .hero-loss { font-size: 68px; font-weight: 800; line-height: 1; color: #2dd4bf; letter-spacing: -.03em; margin-bottom: 8px; }
+    .d1 .hero-sub { font-size: 20px; color: #94a3b8; margin-bottom: 32px; }
+    .d1 .hero-meta { font-size: 12px; color: #475569; }
+
+    .d1 .section { padding: 48px 24px; max-width: 720px; margin: 0 auto; border-top: 1px solid #1e2230; }
+    .d1 .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: #2dd4bf; margin-bottom: 8px; }
+    .d1 .section-title { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .d1 .section-body { font-size: 15px; color: #94a3b8; line-height: 1.6; }
+
+    .d1 .card { background: #1a1d27; border: 1px solid #2a2f3e; border-radius: 12px; padding: 20px 24px; margin-top: 20px; }
+    .d1 .card-title { font-size: 13px; font-weight: 600; color: #f8fafc; margin-bottom: 4px; }
+    .d1 .card-sub { font-size: 12px; color: #64748b; margin-bottom: 16px; }
+    .d1 .tariff-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0;
+      border-top: 1px solid #252836; font-size: 13px; }
+    .d1 .tariff-row span:last-child { font-weight: 700; color: #2dd4bf; }
+    .d1 .freshness { font-size: 11px; color: #475569; margin-top: 12px; }
+
+    .d1 .slider-group { margin-top: 24px; }
+    .d1 .slider-label { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+    .d1 .slider-label strong { color: #f8fafc; }
+    .d1 input[type=range] { width: 100%; accent-color: #2dd4bf; height: 4px; border-radius: 2px; }
+    .d1 .slider-hint { font-size: 11px; color: #475569; margin-top: 4px; }
+
+    .d1 .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .d1 .stat-box { background: #1a1d27; border: 1px solid #2a2f3e; border-radius: 10px; padding: 20px 16px; text-align: center; }
+    .d1 .stat-value { font-size: 28px; font-weight: 800; color: #2dd4bf; letter-spacing: -.02em; }
+    .d1 .stat-label { font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+
+    .d1 .cta { display: inline-flex; align-items: center; gap: 8px; background: #2dd4bf; color: #0f1117;
+      font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 24px; border: none; cursor: pointer; }
+    .d1 .cta:hover { background: #14b8a6; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 2 — "Ledger" (high-density, data-forward)
+    ══════════════════════════════════════════════════ */
+    .d2 { background: #090c12; }
+    .d2 header { background: #0d1117; border-bottom: 1px solid #1e2a3a; padding: 14px 32px;
+      display: flex; align-items: center; gap: 16px; position: sticky; top: 53px; }
+    .d2 header .logo { font-size: 13px; font-weight: 700; color: #7dd3fc; letter-spacing: .04em; text-transform: uppercase; }
+    .d2 header nav { margin-left: auto; display: flex; gap: 20px; }
+    .d2 header nav a { font-size: 12px; color: #4a5568; text-decoration: none; }
+    .d2 header nav a:hover { color: #7dd3fc; }
+    .d2 header .lang { font-size: 11px; background: none; border: 1px solid #1e2a3a; color: #4a5568; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+
+    .d2 .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid #1e2a3a; }
+    .d2 .hero-left { padding: 56px 32px; border-right: 1px solid #1e2a3a; }
+    .d2 .hero-right { padding: 32px; background: #0a0e16; }
+    .d2 .hero-overline { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #4a5568; margin-bottom: 12px; }
+    .d2 .hero-loss { font-size: 52px; font-weight: 800; color: #7dd3fc; letter-spacing: -.025em; line-height: 1; margin-bottom: 8px; }
+    .d2 .hero-desc { font-size: 14px; color: #4a5568; line-height: 1.5; }
+    .d2 .data-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #1a2030; font-size: 13px; }
+    .d2 .data-row .key { color: #4a5568; }
+    .d2 .data-row .val { font-weight: 600; color: #e2e8f0; }
+    .d2 .data-row .val.accent { color: #7dd3fc; }
+    .d2 .section { padding: 40px 32px; border-bottom: 1px solid #1e2a3a; max-width: 960px; margin: 0 auto; }
+    .d2 .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #4a5568; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #1e2a3a; }
+    .d2 .operator-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .d2 .operator-table th { text-align: left; padding: 8px 12px; color: #4a5568; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid #1e2a3a; }
+    .d2 .operator-table td { padding: 10px 12px; border-bottom: 1px solid #111827; color: #94a3b8; }
+    .d2 .operator-table td.accent { color: #7dd3fc; font-weight: 700; }
+    .d2 .operator-table tr:last-child td { border-bottom: none; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 3 — "Ember" (warmer, amber accent)
+    ══════════════════════════════════════════════════ */
+    .d3 { background: #100e0b; }
+    .d3 header { background: #14110d; border-bottom: 1px solid #2a2218; padding: 14px 28px;
+      display: flex; align-items: center; gap: 24px; position: sticky; top: 53px; }
+    .d3 header .logo { font-size: 16px; font-weight: 800; color: #fbbf24; }
+    .d3 header nav { display: flex; gap: 20px; }
+    .d3 header nav a { font-size: 13px; color: #78716c; text-decoration: none; }
+    .d3 header .lang { margin-left: auto; background: none; border: 1px solid #2a2218; color: #78716c; font-size: 12px; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+
+    .d3 .hero { padding: 72px 28px 56px; max-width: 680px; margin: 0 auto; }
+    .d3 .hero-eyebrow { font-size: 12px; color: #78716c; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+    .d3 .hero-loss { font-size: 64px; font-weight: 800; color: #fbbf24; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 12px; }
+    .d3 .hero-desc { font-size: 16px; color: #78716c; max-width: 500px; line-height: 1.6; }
+    .d3 .section { padding: 48px 28px; max-width: 680px; margin: 0 auto; }
+    .d3 .divider { border: none; border-top: 1px solid #2a2218; margin: 0 28px; }
+    .d3 .section-tag { display: inline-block; background: #fbbf2415; color: #fbbf24; border: 1px solid #fbbf2430;
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; }
+    .d3 .section-title { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+    .d3 .card { background: #1a1612; border: 1px solid #2a2218; border-radius: 10px; padding: 18px 20px; margin-top: 16px; }
+    .d3 .operator-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .d3 .tariff-line { font-size: 13px; color: #78716c; display: flex; justify-content: space-between; padding: 4px 0; }
+    .d3 .tariff-line .price { color: #fbbf24; font-weight: 700; }
+    .d3 .stat-row { display: flex; gap: 12px; margin-top: 20px; }
+    .d3 .stat-box { flex: 1; background: #1a1612; border: 1px solid #2a2218; border-radius: 8px; padding: 16px; }
+    .d3 .stat-value { font-size: 24px; font-weight: 800; color: #fbbf24; }
+    .d3 .stat-label { font-size: 11px; color: #57534e; margin-top: 2px; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 4 — "Minimal" (light mode, high contrast)
+    ══════════════════════════════════════════════════ */
+    .d4 { background: #f8fafc; color: #0f172a; }
+    .d4 header { background: #ffffffee; backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0;
+      padding: 14px 28px; display: flex; align-items: center; gap: 24px; position: sticky; top: 53px; }
+    .d4 header .logo { font-size: 15px; font-weight: 800; color: #0f172a; }
+    .d4 header nav { display: flex; gap: 20px; }
+    .d4 header nav a { font-size: 13px; color: #94a3b8; text-decoration: none; }
+    .d4 header nav a:hover { color: #0f172a; }
+    .d4 header .accent-dot { width: 8px; height: 8px; background: #0d9488; border-radius: 50%; display: inline-block; }
+    .d4 header .lang { margin-left: auto; background: none; border: 1px solid #e2e8f0; color: #64748b; font-size: 12px; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+
+    .d4 .hero { padding: 72px 28px 56px; max-width: 680px; margin: 0 auto; }
+    .d4 .hero-pill { display: inline-block; background: #f0fdf9; color: #0d9488; border: 1px solid #99f6e4; 
+      font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+    .d4 .hero-loss { font-size: 64px; font-weight: 800; color: #0d9488; letter-spacing: -.03em; line-height: 1; margin-bottom: 12px; }
+    .d4 .hero-desc { font-size: 17px; color: #475569; line-height: 1.6; max-width: 520px; }
+    .d4 .section { padding: 48px 28px; max-width: 680px; margin: 0 auto; border-top: 1px solid #e2e8f0; }
+    .d4 .section-num { font-size: 11px; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+    .d4 .section-title { font-size: 26px; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+    .d4 .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin-top: 16px; box-shadow: 0 1px 3px #0000000a; }
+    .d4 .tariff-row { display: flex; justify-content: space-between; font-size: 13px; padding: 7px 0; border-top: 1px solid #f1f5f9; }
+    .d4 .tariff-row .price { font-weight: 700; color: #0d9488; }
+    .d4 .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+    .d4 .stat-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 16px; text-align: center; }
+    .d4 .stat-value { font-size: 26px; font-weight: 800; color: #0d9488; }
+    .d4 .stat-label { font-size: 11px; color: #94a3b8; margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+    .d4 .cta { display: inline-flex; align-items: center; gap: 8px; background: #0d9488; color: #fff;
+      font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 24px; border: none; cursor: pointer; }
+    .d4 .cta:hover { background: #0f766e; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 5 — "Grid" (magazine-style, bold sections)
+    ══════════════════════════════════════════════════ */
+    .d5 { background: #07090e; }
+    .d5 header { background: #07090e; border-bottom: 2px solid #2dd4bf; padding: 12px 32px;
+      display: flex; align-items: center; position: sticky; top: 53px; }
+    .d5 header .logo { font-size: 14px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: #f8fafc; }
+    .d5 header .logo span { color: #2dd4bf; }
+    .d5 header nav { display: flex; gap: 24px; margin: 0 auto; }
+    .d5 header nav a { font-size: 12px; color: #4b5563; text-decoration: none; letter-spacing: .05em; text-transform: uppercase; }
+    .d5 header nav a:hover { color: #2dd4bf; }
+    .d5 header .lang { background: none; border: 1px solid #1e2230; color: #4b5563; font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+
+    .d5 .hero { display: grid; grid-template-columns: 3fr 1fr; min-height: 280px; border-bottom: 1px solid #1e2230; }
+    .d5 .hero-main { padding: 48px 32px; border-right: 1px solid #1e2230; }
+    .d5 .hero-sidebar { padding: 32px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .d5 .kicker { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: #2dd4bf; margin-bottom: 10px; }
+    .d5 .hero-loss { font-size: 60px; font-weight: 900; color: #f8fafc; line-height: 1; margin-bottom: 8px; }
+    .d5 .hero-loss span { color: #2dd4bf; }
+    .d5 .hero-desc { font-size: 15px; color: #6b7280; line-height: 1.5; }
+    .d5 .sidebar-stat { background: #0f1117; border: 1px solid #1e2230; border-radius: 8px; padding: 14px 16px; }
+    .d5 .sidebar-stat-val { font-size: 22px; font-weight: 800; color: #2dd4bf; }
+    .d5 .sidebar-stat-label { font-size: 11px; color: #4b5563; margin-top: 2px; }
+    .d5 .content-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #1e2230; }
+    .d5 .content-cell { padding: 36px 32px; border-right: 1px solid #1e2230; }
+    .d5 .content-cell:last-child { border-right: none; }
+    .d5 .cell-label { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #2dd4bf; margin-bottom: 10px; }
+    .d5 .cell-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .d5 .mini-card { background: #0f1117; border: 1px solid #1e2230; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 13px; }
+    .d5 .mini-card-name { font-weight: 600; margin-bottom: 4px; }
+    .d5 .mini-card-price { color: #2dd4bf; font-weight: 700; font-size: 15px; }
+    .d5 .mini-card-sub { font-size: 11px; color: #4b5563; }
+
+    /* ══════════════════════════════════════════════════
+       DIRECTION 6 — "Flow" (gradient accent, card-first)
+    ══════════════════════════════════════════════════ */
+    .d6 { background: #0b0d14; }
+    .d6 header { background: linear-gradient(180deg, #0b0d14 0%, transparent 100%); padding: 20px 28px;
+      display: flex; align-items: center; gap: 24px; position: sticky; top: 53px; }
+    .d6 header .logo { font-size: 16px; font-weight: 800; background: linear-gradient(135deg, #2dd4bf, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .d6 header nav { display: flex; gap: 20px; }
+    .d6 header nav a { font-size: 13px; color: #4b5563; text-decoration: none; }
+    .d6 header .lang { margin-left: auto; background: #13151f; border: 1px solid #1e2230; color: #64748b; font-size: 12px; padding: 5px 10px; border-radius: 8px; cursor: pointer; }
+
+    .d6 .hero { padding: 80px 28px 64px; max-width: 720px; margin: 0 auto; text-align: center; }
+    .d6 .hero-eyebrow { font-size: 12px; color: #4b5563; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; }
+    .d6 .hero-loss { font-size: 72px; font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, #2dd4bf 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+    .d6 .hero-desc { font-size: 16px; color: #64748b; max-width: 480px; margin: 0 auto 40px; line-height: 1.6; }
+    .d6 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .d6 .btn-primary { background: linear-gradient(135deg, #2dd4bf, #0d9488); color: #0f1117; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 10px; border: none; cursor: pointer; }
+    .d6 .btn-ghost { background: transparent; border: 1px solid #2a2f3e; color: #94a3b8; font-size: 14px; padding: 12px 24px; border-radius: 10px; cursor: pointer; }
+    .d6 .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 0 28px 48px; max-width: 720px; margin: 0 auto; }
+    .d6 .feature-card { background: linear-gradient(135deg, #13151f 0%, #1a1d2a 100%); border: 1px solid #1e2230; border-radius: 16px; padding: 24px; }
+    .d6 .feature-icon { width: 40px; height: 40px; background: #2dd4bf1a; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .d6 .feature-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .d6 .feature-value { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #2dd4bf, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
+    .d6 .feature-sub { font-size: 12px; color: #4b5563; }
+
+    /* ── Comparison note ── */
+    .comparison-note { max-width: 720px; margin: 0 auto; padding: 32px 24px; border-top: 1px solid #1e2230; }
+    .comparison-note h3 { font-size: 14px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; }
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pros, .cons { font-size: 13px; }
+    .pros h4 { color: #2dd4bf; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    .cons h4 { color: #f59e0b; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    .pros li, .cons li { color: #64748b; margin-bottom: 4px; margin-left: 14px; }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<div class="nav">
+  <span class="nav-title">Design Directions:</span>
+  <button class="active" onclick="show('d1', this)">1 · Signal ★ Recommended</button>
+  <button onclick="show('d2', this)">2 · Ledger</button>
+  <button onclick="show('d3', this)">3 · Ember</button>
+  <button onclick="show('d4', this)">4 · Minimal (Light)</button>
+  <button onclick="show('d5', this)">5 · Grid</button>
+  <button onclick="show('d6', this)">6 · Flow</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 1 — Signal (Recommended)
+══════════════════════════════════════════════════ -->
+<div class="direction d1 active" id="d1">
+
+  <header>
+    <span class="logo">⚡ Moldova EV</span>
+    <nav>
+      <a href="#">Încărcare</a>
+      <a href="#">Taxe</a>
+      <a href="#">Economii</a>
+      <a href="#">CO₂</a>
+    </nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge">Moldova · Live ANRE Prices</div>
+    <div class="hero-label">Cu mașina curentă, pierzi</div>
+    <div class="hero-loss">1.840 MDL</div>
+    <div class="hero-sub">pe lună față de un EV — fără să faci nimic</div>
+    <div class="hero-meta">Benzina 95: 29.38 MDL/L · EVPoint AC Centru: 7.44 MDL/EV · 1.200 km/lună (implicit) · Actualizat: 29 apr 2026</div>
+  </div>
+
+  <!-- Sliders -->
+  <div class="section">
+    <div class="section-label">Personalizează</div>
+    <div class="section-title">Ajustează pentru realitatea ta</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Kilometri pe lună</span><strong>1.200 km</strong></div>
+      <input type="range" min="300" max="3000" value="1200" />
+      <div class="slider-hint">Media șoferului moldovean: ~1.200 km/lună</div>
+    </div>
+    <div class="slider-group" style="margin-top:20px">
+      <div class="slider-label"><span>Tip combustibil</span><strong>Benzina 95</strong></div>
+      <input type="range" min="0" max="2" value="0" />
+      <div class="slider-hint">Benzina 95 · Motorina · GPL</div>
+    </div>
+  </div>
+
+  <!-- Charging -->
+  <div class="section">
+    <div class="section-label">Încărcare</div>
+    <div class="section-title">Rețele publice în Moldova</div>
+    <div class="card">
+      <div class="card-title">EVPoint</div>
+      <div class="card-sub">120+ stații · 270+ puncte de încărcare</div>
+      <div class="tariff-row"><span>AC Centru/Sud</span><span>de la 7.44 MDL/EV</span></div>
+      <div class="tariff-row"><span>DC Centru/Sud</span><span>de la 9.48 MDL/EV</span></div>
+      <div class="tariff-row"><span>AC Nord</span><span>de la 7.80 MDL/EV</span></div>
+      <div class="tariff-row"><span>DC Nord</span><span>de la 10.44 MDL/EV</span></div>
+      <div class="freshness">Ultima verificare: 29 apr 2026 · 1 EV = 1 kWh (unitate convențională, include TVA)</div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">eCharge Moldova</div>
+      <div class="card-sub">Tarife disponibile numai în aplicație</div>
+      <div class="freshness">Ultima verificare: 29 apr 2026</div>
+    </div>
+  </div>
+
+  <!-- Savings -->
+  <div class="section">
+    <div class="section-label">Economii</div>
+    <div class="section-title" style="color:#2dd4bf">Pierzi 1.840 MDL în fiecare lună</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-value">1.840</div>
+        <div class="stat-label">MDL / lună</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">22.080</div>
+        <div class="stat-label">MDL / an</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">110.400</div>
+        <div class="stat-label">MDL / 5 ani</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section">
+    <div class="section-label">Pași următori</div>
+    <div class="section-title">Începe acum</div>
+    <button class="cta">Descarcă EVPoint →</button>
+  </div>
+
+  <div class="comparison-note">
+    <h3>Direction 1 — "Signal" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>Maximum loss-aversion impact — headline dominates first paint</li>
+        <li>Single column → frictionless mobile scroll</li>
+        <li>Teal accent = forward momentum, not alarm</li>
+        <li>Transparent → solid header on scroll (trust signal)</li>
+        <li>Closest to PRD vision</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Minimal visual variety between sections</li>
+        <li>Desktop may feel sparse at max-width 720px</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 2 — Ledger
+══════════════════════════════════════════════════ -->
+<div class="direction d2" id="d2">
+  <header>
+    <span class="logo">Moldova EV Overview</span>
+    <nav>
+      <a href="#">Charging</a><a href="#">Tax</a><a href="#">Savings</a><a href="#">CO₂</a>
+    </nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-overline">Monthly cost comparison · Moldova · Apr 2026</div>
+      <div class="hero-loss">−1.840 MDL</div>
+      <p style="font-size:13px; color:#4a5568; margin-top:8px; line-height:1.5;">Monthly loss staying in your current petrol car vs. switching to an EV — based on live ANRE fuel prices and EVPoint public tariffs.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-overline" style="margin-bottom:16px">Live data</div>
+      <div class="data-row"><span class="key">Benzina 95</span><span class="val accent">29.38 MDL/L</span></div>
+      <div class="data-row"><span class="key">Motorina</span><span class="val accent">30.13 MDL/L</span></div>
+      <div class="data-row"><span class="key">EVPoint AC (Centru)</span><span class="val accent">7.44 MDL/EV</span></div>
+      <div class="data-row"><span class="key">km/month</span><span class="val">1,200</span></div>
+      <div class="data-row"><span class="key">Source</span><span class="val">ANRE · 29 Apr 2026</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Charging operators</div>
+    <table class="operator-table">
+      <thead><tr><th>Operator</th><th>Type</th><th>Region</th><th>Price</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>EVPoint</td><td>AC</td><td>Centru / Sud</td><td class="accent">7.44 MDL/EV</td><td>Active</td></tr>
+        <tr><td>EVPoint</td><td>DC</td><td>Centru / Sud</td><td class="accent">9.48 MDL/EV</td><td>Active</td></tr>
+        <tr><td>EVPoint</td><td>AC</td><td>Nord</td><td class="accent">7.80 MDL/EV</td><td>Active</td></tr>
+        <tr><td>EVPoint</td><td>DC</td><td>Nord</td><td class="accent">10.44 MDL/EV</td><td>Active</td></tr>
+        <tr><td>EVGP</td><td>DC 120kW</td><td>3 stations</td><td class="accent">8.90 MDL/kWh</td><td>Active</td></tr>
+        <tr><td>eCharge Moldova</td><td>AC/DC</td><td>—</td><td style="color:#f59e0b">App only</td><td>Active</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="comparison-note">
+    <h3>Direction 2 — "Ledger" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>Data-dense; appeals to analytical users (Natalia, Andrei)</li>
+        <li>Two-column hero surfaces data + headline simultaneously</li>
+        <li>Table layout ideal for operator tariff comparison</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Two-column hero breaks on small mobile</li>
+        <li>Less emotional impact — feels like a spreadsheet</li>
+        <li>Loses loss-aversion punch with blue accent</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 3 — Ember
+══════════════════════════════════════════════════ -->
+<div class="direction d3" id="d3">
+  <header>
+    <span class="logo">⚡ Moldova EV</span>
+    <nav><a href="#">Încărcare</a><a href="#">Taxe</a><a href="#">Economii</a><a href="#">CO₂</a></nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Prețuri ANRE live · 29 apr 2026</div>
+    <div class="hero-loss">Pierzi 1.840 MDL/lună</div>
+    <p class="hero-desc">Rămânând cu mașina pe benzină în loc să treci la un vehicul electric. Calculat pe baza datelor reale din Moldova.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-tag">Rețele de încărcare</div>
+    <div class="section-title">Operatori activi în Moldova</div>
+    <div class="card">
+      <div class="operator-name">EVPoint</div>
+      <div class="tariff-line"><span>AC Centru/Sud</span><span class="price">7.44 MDL/EV</span></div>
+      <div class="tariff-line"><span>DC Centru/Sud</span><span class="price">9.48 MDL/EV</span></div>
+      <div class="tariff-line"><span>AC Nord</span><span class="price">7.80 MDL/EV</span></div>
+      <div class="tariff-line"><span>DC Nord</span><span class="price">10.44 MDL/EV</span></div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-tag">Economii calculate</div>
+    <div class="section-title">Cât pierzi rămânând pe benzină</div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-value">1.840</div><div class="stat-label">MDL/lună</div></div>
+      <div class="stat-box"><div class="stat-value">22.080</div><div class="stat-label">MDL/an</div></div>
+      <div class="stat-box"><div class="stat-value">110.400</div><div class="stat-label">MDL/5 ani</div></div>
+    </div>
+  </div>
+
+  <div class="comparison-note">
+    <h3>Direction 3 — "Ember" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>Amber/gold feels premium and warm</li>
+        <li>Strong vertical rhythm with dividers</li>
+        <li>Section tags create clear visual hierarchy</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Amber associates with caution/warning, not EV positivity</li>
+        <li>Warm tone may feel less "electric/modern"</li>
+        <li>Lower contrast on dark brown background</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 4 — Minimal (Light)
+══════════════════════════════════════════════════ -->
+<div class="direction d4" id="d4">
+  <header>
+    <span class="logo">Moldova EV</span>
+    <span class="accent-dot"></span>
+    <nav><a href="#">Charging</a><a href="#">Tax</a><a href="#">Savings</a><a href="#">CO₂</a></nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <div class="hero">
+    <div class="hero-pill">Moldova · Live ANRE Prices · Apr 2026</div>
+    <div class="hero-loss">−1,840 MDL/mo</div>
+    <p class="hero-desc">Staying in your current petrol car costs you this much more per month than switching to an EV — calculated with real Moldova data.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">01 · Charging</div>
+    <div class="section-title">Public charging networks</div>
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:#0f172a">EVPoint</div>
+      <div class="tariff-row"><span>AC Centru/Sud</span><span class="price">7.44 MDL/EV</span></div>
+      <div class="tariff-row"><span>DC Centru/Sud</span><span class="price">9.48 MDL/EV</span></div>
+      <div class="tariff-row"><span>AC Nord</span><span class="price">7.80 MDL/EV</span></div>
+      <div class="tariff-row"><span>DC Nord</span><span class="price">10.44 MDL/EV</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03 · Savings</div>
+    <div class="section-title">Your monthly cost gap</div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-value">1,840</div><div class="stat-label">MDL / month</div></div>
+      <div class="stat-box"><div class="stat-value">22,080</div><div class="stat-label">MDL / year</div></div>
+      <div class="stat-box"><div class="stat-value">110,400</div><div class="stat-label">MDL / 5 years</div></div>
+    </div>
+    <button class="cta">Download EVPoint →</button>
+  </div>
+
+  <div class="comparison-note" style="border-color:#e2e8f0; color:#0f172a">
+    <h3 style="color:#64748b">Direction 4 — "Minimal (Light)" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>High readability; excellent for older demographics</li>
+        <li>Feels official / trustworthy (government-adjacent)</li>
+        <li>Strong contrast by default</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Light mode contradicts PRD "dark/teal design" spec</li>
+        <li>Less emotionally charged — loses urgency impact</li>
+        <li>Doesn't differentiate from standard info sites</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 5 — Grid
+══════════════════════════════════════════════════ -->
+<div class="direction d5" id="d5">
+  <header>
+    <span class="logo">MOLDOVA <span>EV</span></span>
+    <nav><a href="#">ÎNCĂRCARE</a><a href="#">TAXE</a><a href="#">ECONOMII</a><a href="#">CO₂</a></nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <div class="hero">
+    <div class="hero-main">
+      <div class="kicker">Live · ANRE · 29 apr 2026</div>
+      <div class="hero-loss">Pierzi <span>1.840</span> MDL</div>
+      <p class="hero-desc">pe lună cu mașina actuală față de un EV. Calculat cu prețuri reale din Moldova.</p>
+    </div>
+    <div class="hero-sidebar">
+      <div class="sidebar-stat"><div class="sidebar-stat-val">29.38</div><div class="sidebar-stat-label">MDL/L · Benzina 95</div></div>
+      <div class="sidebar-stat"><div class="sidebar-stat-val">7.44</div><div class="sidebar-stat-label">MDL/EV · EVPoint AC</div></div>
+      <div class="sidebar-stat"><div class="sidebar-stat-val">1.200</div><div class="sidebar-stat-label">km/lună (implicit)</div></div>
+    </div>
+  </div>
+
+  <div class="content-row">
+    <div class="content-cell">
+      <div class="cell-label">Încărcare</div>
+      <div class="cell-title">Rețele publice</div>
+      <div class="mini-card">
+        <div class="mini-card-name">EVPoint · AC Centru/Sud</div>
+        <div class="mini-card-price">7.44 MDL/EV</div>
+        <div class="mini-card-sub">120+ stații în toată Moldova</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-name">EVPoint · DC Fast Centru/Sud</div>
+        <div class="mini-card-price">9.48 MDL/EV</div>
+        <div class="mini-card-sub">Până la 150 kW în Chișinău</div>
+      </div>
+    </div>
+    <div class="content-cell">
+      <div class="cell-label">Economii estimate</div>
+      <div class="cell-title">Costul inacțiunii</div>
+      <div class="mini-card">
+        <div class="mini-card-name">Lunar</div>
+        <div class="mini-card-price">1.840 MDL</div>
+        <div class="mini-card-sub">față de un EV la EVPoint AC</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-name">Pe 5 ani</div>
+        <div class="mini-card-price">110.400 MDL</div>
+        <div class="mini-card-sub">fără cost de achiziție</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison-note">
+    <h3>Direction 5 — "Grid" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>Editorial / magazine feel — strong visual hierarchy</li>
+        <li>Sidebar stats make data immediately scannable</li>
+        <li>Bold grid lines create authoritative structure</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Two-column grid collapses awkwardly on mobile</li>
+        <li>All-caps headers feel aggressive at scale</li>
+        <li>More complex layout = more responsive work</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DIRECTION 6 — Flow
+══════════════════════════════════════════════════ -->
+<div class="direction d6" id="d6">
+  <header>
+    <span class="logo">Moldova EV Overview</span>
+    <nav><a href="#">Încărcare</a><a href="#">Taxe</a><a href="#">Economii</a><a href="#">CO₂</a></nav>
+    <select class="lang"><option>RO</option><option>EN</option><option>RU</option></select>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Moldova · Prețuri ANRE live · Calcul personalizat</div>
+    <div class="hero-loss">1.840 MDL/lună</div>
+    <p class="hero-desc">Atât pierzi lunar rămânând cu benzina față de un vehicul electric — calculat cu date reale din Moldova.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Personalizează →</button>
+      <button class="btn-ghost">Vezi operatorii</button>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Cost încărcare</div>
+      <div class="feature-value">7.44 MDL/EV</div>
+      <div class="feature-sub">EVPoint AC · Centru/Sud · 29 apr 2026</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⛽</div>
+      <div class="feature-title">Preț combustibil</div>
+      <div class="feature-value">29.38 MDL/L</div>
+      <div class="feature-sub">Benzina 95 · ANRE · 29 apr 2026</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Economii anuale</div>
+      <div class="feature-value">22.080 MDL</div>
+      <div class="feature-sub">1.200 km/lună · calcul implicit</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌱</div>
+      <div class="feature-title">CO₂ evitat</div>
+      <div class="feature-value">14 copaci</div>
+      <div class="feature-sub">echivalent plantat pe an</div>
+    </div>
+  </div>
+
+  <div class="comparison-note">
+    <h3>Direction 6 — "Flow" · Analysis</h3>
+    <div class="pros-cons">
+      <div class="pros"><h4>Strengths</h4><ul>
+        <li>Gradient headline is visually striking</li>
+        <li>Card grid clearly segments the four data pillars</li>
+        <li>App-store aesthetic feels modern and shareable</li>
+      </ul></div>
+      <div class="cons"><h4>Trade-offs</h4><ul>
+        <li>Gradient text reduces legibility on some screens</li>
+        <li>Purple in gradient shifts brand away from EV/teal identity</li>
+        <li>Card-grid fragments the single-scroll emotional arc</li>
+        <li>Hero CTA buttons add friction before the user sees anything</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.direction').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
