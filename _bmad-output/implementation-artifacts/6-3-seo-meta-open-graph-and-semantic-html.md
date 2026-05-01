@@ -47,13 +47,19 @@ so that the link looks professional and I understand what the page offers before
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Calculator EV Moldova — Cât economisești trecând la electric?</title>
-    <meta name="description" content="Calculează cât cheltuiești cu benzina față de un vehicul electric în Moldova. Prețuri ANRE actualizate, tarife EVPoint reale, comparație taxă de drum." />
+    <meta
+      name="description"
+      content="Calculează cât cheltuiești cu benzina față de un vehicul electric în Moldova. Prețuri ANRE actualizate, tarife EVPoint reale, comparație taxă de drum."
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ev.md/" />
     <meta property="og:title" content="Calculator EV Moldova — Cât economisești trecând la electric?" />
-    <meta property="og:description" content="Calculează cât cheltuiești cu benzina față de un vehicul electric în Moldova. Prețuri ANRE actualizate, tarife EVPoint reale." />
+    <meta
+      property="og:description"
+      content="Calculează cât cheltuiești cu benzina față de un vehicul electric în Moldova. Prețuri ANRE actualizate, tarife EVPoint reale."
+    />
     <meta property="og:image" content="https://ev.md/og-preview.png" />
   </head>
   <body>
@@ -70,6 +76,7 @@ so that the link looks professional and I understand what the page offers before
 Create `public/og-preview.png` — a simple 1200×630px image (standard OG dimensions). For V1, this can be a basic placeholder. The agent should create a simple image or note that a proper design asset is needed.
 
 If no image generation capability is available, create a placeholder `public/og-preview.png` note file and add a TODO comment in `index.html`:
+
 ```html
 <!-- TODO: Replace og:image with actual 1200x630 social preview image -->
 ```
@@ -77,6 +84,7 @@ If no image generation capability is available, create a placeholder `public/og-
 ### Heading Hierarchy Audit
 
 Required heading structure across the app:
+
 ```
 <h1> — Hero section (LossHeadline or hero title)
 <h2> — "Operatori de încărcare" (ChargingSection)
@@ -94,9 +102,7 @@ No `<h1>` should appear in section components — only in the hero area. No leve
 
 ```tsx
 // In App.tsx, wrap sections:
-<main id="main-content">
-  {/* All section components */}
-</main>
+<main id="main-content">{/* All section components */}</main>
 ```
 
 The `id="main-content"` is required for the skip link in Story 6.4 to work.
@@ -108,11 +114,13 @@ The `id="main-content"` is required for the skip link in Story 6.4 to work.
 ### Project Structure Notes
 
 Files modified:
+
 - `index.html` — meta tags, title, OG, lang attribute
 - `src/App.tsx` — add `<main id="main-content">` wrapper
 - `src/components/*.tsx` — audit and fix heading levels if needed
 
 Files created:
+
 - `public/og-preview.png` — 1200×630 placeholder (or TODO note)
 
 ### References
@@ -124,6 +132,9 @@ Files created:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

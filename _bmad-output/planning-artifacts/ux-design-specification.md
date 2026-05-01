@@ -24,12 +24,12 @@ The core design philosophy is **honest urgency**: rather than promotional "here'
 
 ### Target Users
 
-| Persona | Context | Primary Need |
-|---|---|---|
-| **Ion** — curious commuter | Android mobile, sees a shared link on Facebook during lunch | Understands his personal savings within 30 seconds, zero input required |
-| **Natalia** — EV owner | Wants to prove savings to a sceptical husband; needs Russian language and motorina comparison | Language switch + fuel type change + side-by-side tax comparison |
-| **Vasile** — Nord region driver | 900 km/month, Bălți area, aware of higher Nord tariffs | Regional tariff visibility in EVPoint card |
-| **Andrei** — maintainer | Updates operator JSON on tariff changes, pushes to Netlify | Not a UX user — his journey shapes data structure, not UI |
+| Persona                         | Context                                                                                       | Primary Need                                                            |
+| ------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **Ion** — curious commuter      | Android mobile, sees a shared link on Facebook during lunch                                   | Understands his personal savings within 30 seconds, zero input required |
+| **Natalia** — EV owner          | Wants to prove savings to a sceptical husband; needs Russian language and motorina comparison | Language switch + fuel type change + side-by-side tax comparison        |
+| **Vasile** — Nord region driver | 900 km/month, Bălți area, aware of higher Nord tariffs                                        | Regional tariff visibility in EVPoint card                              |
+| **Andrei** — maintainer         | Updates operator JSON on tariff changes, pushes to Netlify                                    | Not a UX user — his journey shapes data structure, not UI               |
 
 Primary device: mid-range Android (360px+), 4G mobile connection. Secondary: desktop and iOS Safari.
 
@@ -55,14 +55,14 @@ The core loop: **see the number → understand why → adjust for your reality �
 
 ### Platform Strategy
 
-| Dimension | Decision |
-|---|---|
-| Platform | Web-only SPA — no native app |
-| Primary input | Touch (Android 360px+, mid-range) |
-| Secondary input | Mouse/keyboard (desktop, iOS Safari) |
-| Offline | Not required |
+| Dimension             | Decision                                         |
+| --------------------- | ------------------------------------------------ |
+| Platform              | Web-only SPA — no native app                     |
+| Primary input         | Touch (Android 360px+, mid-range)                |
+| Secondary input       | Mouse/keyboard (desktop, iOS Safari)             |
+| Offline               | Not required                                     |
 | External capabilities | ANRE live fetch on mount (silent, with fallback) |
-| Routing | None — single HTML document, anchor scroll only |
+| Routing               | None — single HTML document, anchor scroll only  |
 
 ### Effortless Interactions
 
@@ -72,12 +72,12 @@ The core loop: **see the number → understand why → adjust for your reality �
 
 ### Critical Success Moments
 
-| Time | Moment | What must happen |
-|---|---|---|
-| T+0s | First paint | Loss-aversion headline visible above fold on mobile with default values |
-| T+15s | Charging section | User recognises EVPoint brand logo; trusts the tariff data |
-| T+45s | Savings section enters viewport | Animated counter triggers; 5-year figure stops the user |
-| T+60s | Next Steps | User taps an App Store CTA or screenshots the 5-year figure |
+| Time  | Moment                          | What must happen                                                        |
+| ----- | ------------------------------- | ----------------------------------------------------------------------- |
+| T+0s  | First paint                     | Loss-aversion headline visible above fold on mobile with default values |
+| T+15s | Charging section                | User recognises EVPoint brand logo; trusts the tariff data              |
+| T+45s | Savings section enters viewport | Animated counter triggers; 5-year figure stops the user                 |
+| T+60s | Next Steps                      | User taps an App Store CTA or screenshots the 5-year figure             |
 
 ### Experience Principles
 
@@ -92,19 +92,19 @@ The core loop: **see the number → understand why → adjust for your reality �
 
 **Primary: Uncomfortable Clarity**
 
-The app should first make users feel something uncomfortable: *"I'm losing real money every month I delay this decision."* That discomfort is intentional — it is the engine of the loss-aversion strategy. It must be followed immediately by **relief and agency**: *"Now I understand exactly what's happening, and I know what to do next."*
+The app should first make users feel something uncomfortable: _"I'm losing real money every month I delay this decision."_ That discomfort is intentional — it is the engine of the loss-aversion strategy. It must be followed immediately by **relief and agency**: _"Now I understand exactly what's happening, and I know what to do next."_
 
 ### Emotional Journey Mapping
 
-| Stage | Target Emotion | What creates it |
-|---|---|---|
-| First load (0–5s) | Mild shock / curiosity | Oversized headline loss figure, no preamble |
-| Charging section | Trust, recognition | Real operator logos, real tariffs, last-verified dates |
-| Sliders | Agency, control | Immediate live recalculation — the user shapes their own truth |
-| Tax section | Surprise + relief | EV=ICE road tax myth-busted — not what most users expect |
-| Savings section | Visceral impact | Animated counter rolling up; 5-year figure stops the user |
-| CO₂ section | Warm pride | Trees planted — soft, human, not preachy |
-| Next Steps | Confidence to act | Direct, frictionless CTAs — no ambiguity about what to do |
+| Stage             | Target Emotion         | What creates it                                                |
+| ----------------- | ---------------------- | -------------------------------------------------------------- |
+| First load (0–5s) | Mild shock / curiosity | Oversized headline loss figure, no preamble                    |
+| Charging section  | Trust, recognition     | Real operator logos, real tariffs, last-verified dates         |
+| Sliders           | Agency, control        | Immediate live recalculation — the user shapes their own truth |
+| Tax section       | Surprise + relief      | EV=ICE road tax myth-busted — not what most users expect       |
+| Savings section   | Visceral impact        | Animated counter rolling up; 5-year figure stops the user      |
+| CO₂ section       | Warm pride             | Trees planted — soft, human, not preachy                       |
+| Next Steps        | Confidence to act      | Direct, frictionless CTAs — no ambiguity about what to do      |
 
 ### Micro-Emotions
 
@@ -133,29 +133,29 @@ The app should first make users feel something uncomfortable: *"I'm losing real 
 
 **1. Wise (TransferWise) — Financial clarity SPA**
 The answer appears before any form is filled. Live recalculation as you type. Trust built through specificity — exact fees, exact rates, not estimates. Clean dark aesthetic with a single dominant metric.
-*Relevance:* Direct model for "the number before the form" pattern and instant live feedback.
+_Relevance:_ Direct model for "the number before the form" pattern and instant live feedback.
 
 **2. Carbon footprint calculators (Atmosfair, myclimate)**
 Emotional framing around a tangible metric (trees, flights, tonnes CO₂). Single-scroll flow. Section-by-section reveal of environmental impact.
-*Relevance:* CO₂ trees metaphor borrowed directly; their form-heavy, slow approach is the anti-model — we invert it with defaults-first.
+_Relevance:_ CO₂ trees metaphor borrowed directly; their form-heavy, slow approach is the anti-model — we invert it with defaults-first.
 
 **3. Solar ROI calculators (EnergySage)**
 Sliders for personalisation, instant savings calculation, regional tariff data, payback-period framing.
-*Anti-pattern identified:* They require sign-up or location entry before showing any result — we deliberately never gate the answer behind user input.
+_Anti-pattern identified:_ They require sign-up or location entry before showing any result — we deliberately never gate the answer behind user input.
 
 **4. GOV.UK service pages — Information hierarchy**
 Ruthless content hierarchy; zero decoration without meaning; progressive disclosure for complex detail via expandable sections.
-*Relevance:* Model for the "What is masa totală autorizată?" expandable explainer and overall heading hierarchy.
+_Relevance:_ Model for the "What is masa totală autorizată?" expandable explainer and overall heading hierarchy.
 
 ### Transferable Patterns
 
-| Pattern | Source | Application |
-|---|---|---|
-| Answer before form | Wise | Loss-aversion headline visible on load with defaults |
-| Live recalculation | Wise / EnergySage | Sliders update all dependent values with zero latency |
-| CO₂ tree metaphor | Atmosfair | CO₂ section visual — trees planted per year |
-| Progressive disclosure | GOV.UK | Expandable masa explainer; secondary operator detail |
-| Specificity as trust | Wise | Brand logos, MDL figures, last-verified dates |
+| Pattern                | Source            | Application                                           |
+| ---------------------- | ----------------- | ----------------------------------------------------- |
+| Answer before form     | Wise              | Loss-aversion headline visible on load with defaults  |
+| Live recalculation     | Wise / EnergySage | Sliders update all dependent values with zero latency |
+| CO₂ tree metaphor      | Atmosfair         | CO₂ section visual — trees planted per year           |
+| Progressive disclosure | GOV.UK            | Expandable masa explainer; secondary operator detail  |
+| Specificity as trust   | Wise              | Brand logos, MDL figures, last-verified dates         |
 
 ### Anti-Patterns to Avoid
 
@@ -179,13 +179,13 @@ Ruthless content hierarchy; zero decoration without meaning; progressive disclos
 
 ### Rationale for Selection
 
-| Factor | Reasoning |
-|---|---|
-| Dark/teal aesthetic already decided | Tailwind custom colour tokens (`teal-500`, `ev-accent`) trivial to configure |
-| Minimal component needs | Sliders, cards, stat boxes, animated counter — simpler custom-built than overriding a component library |
-| Bundle performance | Zero unused CSS with Vite tree-shaking; supports <150KB bundle target |
-| Single-developer project | No design-dev handoff friction; utility classes map directly to design decisions |
-| WCAG AA accessibility | Managed at component level via ARIA attributes; not delegated to a third-party library |
+| Factor                              | Reasoning                                                                                               |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Dark/teal aesthetic already decided | Tailwind custom colour tokens (`teal-500`, `ev-accent`) trivial to configure                            |
+| Minimal component needs             | Sliders, cards, stat boxes, animated counter — simpler custom-built than overriding a component library |
+| Bundle performance                  | Zero unused CSS with Vite tree-shaking; supports <150KB bundle target                                   |
+| Single-developer project            | No design-dev handoff friction; utility classes map directly to design decisions                        |
+| WCAG AA accessibility               | Managed at component level via ARIA attributes; not delegated to a third-party library                  |
 
 ### Implementation Approach
 
@@ -215,7 +215,7 @@ tailwind.config.js
 
 ### Defining Experience
 
-> *"See your Moldova-specific monthly loss — instantly, before touching anything — then make it yours by adjusting two sliders."*
+> _"See your Moldova-specific monthly loss — instantly, before touching anything — then make it yours by adjusting two sliders."_
 
 The app's defining interaction is **passive personalisation**: the financial result is already there at first paint, personalised enough with defaults, and becomes exactly yours with minimal slider adjustment. This inverts the standard calculator UX (form → result) into (result → optional refinement).
 
@@ -241,27 +241,27 @@ Moldovan users arrive sceptical, carrying the mental model that "EV calculators 
 
 ### Experience Mechanics
 
-| Phase | What happens |
-|---|---|
-| **Initiation** | Automatic — loss figure present at T+0 with defaults; user is passive recipient first |
-| **Interaction** | km/month and fuel type sliders cover 80% of personalisation; weight + charging mode are secondary |
-| **Feedback** | Real-time update across all dependent values; subtle value-highlight pulse confirms change; animated counter re-triggers on re-entry |
-| **Completion** | Felt, not clicked — when the 5-year figure resonates, user screenshots or taps App Store CTA |
+| Phase           | What happens                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Initiation**  | Automatic — loss figure present at T+0 with defaults; user is passive recipient first                                                |
+| **Interaction** | km/month and fuel type sliders cover 80% of personalisation; weight + charging mode are secondary                                    |
+| **Feedback**    | Real-time update across all dependent values; subtle value-highlight pulse confirms change; animated counter re-triggers on re-entry |
+| **Completion**  | Felt, not clicked — when the 5-year figure resonates, user screenshots or taps App Store CTA                                         |
 
 ## Visual Design Foundation
 
 ### Color System
 
-| Token | Hex | Role |
-|---|---|---|
-| `ev-bg` | `#0f1117` | Page background — deep near-black |
-| `ev-surface` | `#1a1d27` | Cards and section backgrounds |
-| `ev-surface-2` | `#252836` | Nested surfaces, hover states |
-| `ev-accent` | `#2dd4bf` | Teal primary — CTAs, highlights, active sliders |
-| `ev-accent-hover` | `#14b8a6` | Teal hover/pressed state |
-| `ev-text` | `#f8fafc` | Primary text |
-| `ev-muted` | `#94a3b8` | Secondary text, labels, timestamps |
-| `ev-warning` | `#f59e0b` | Data freshness / ANRE fallback state indicator |
+| Token             | Hex       | Role                                            |
+| ----------------- | --------- | ----------------------------------------------- |
+| `ev-bg`           | `#0f1117` | Page background — deep near-black               |
+| `ev-surface`      | `#1a1d27` | Cards and section backgrounds                   |
+| `ev-surface-2`    | `#252836` | Nested surfaces, hover states                   |
+| `ev-accent`       | `#2dd4bf` | Teal primary — CTAs, highlights, active sliders |
+| `ev-accent-hover` | `#14b8a6` | Teal hover/pressed state                        |
+| `ev-text`         | `#f8fafc` | Primary text                                    |
+| `ev-muted`        | `#94a3b8` | Secondary text, labels, timestamps              |
+| `ev-warning`      | `#f59e0b` | Data freshness / ANRE fallback state indicator  |
 
 Contrast ratios: `ev-text` on `ev-bg` = 17:1 (AAA). `ev-accent` on `ev-bg` = 7.2:1 (AA large text). All WCAG 2.1 AA compliant.
 
@@ -270,14 +270,14 @@ Contrast ratios: `ev-text` on `ev-bg` = 17:1 (AAA). `ev-accent` on `ev-bg` = 7.2
 **Primary typeface:** Inter (geometric, neutral, excellent multilingual support for Romanian diacritics and Cyrillic)  
 **Fallback stack:** system-ui, -apple-system, sans-serif
 
-| Scale | Size | Weight | Use |
-|---|---|---|---|
-| `display` | 56–72px | 800 | Loss-aversion headline loss figure |
-| `h1` | 36px | 700 | Section titles |
-| `h2` | 24px | 600 | Card headers |
-| `body` | 16px | 400 | Body text |
-| `label` | 14px | 500 | Slider labels, form labels |
-| `small` | 13px | 400 | Last-verified dates, helper text |
+| Scale     | Size    | Weight | Use                                |
+| --------- | ------- | ------ | ---------------------------------- |
+| `display` | 56–72px | 800    | Loss-aversion headline loss figure |
+| `h1`      | 36px    | 700    | Section titles                     |
+| `h2`      | 24px    | 600    | Card headers                       |
+| `body`    | 16px    | 400    | Body text                          |
+| `label`   | 14px    | 500    | Slider labels, form labels         |
+| `small`   | 13px    | 400    | Last-verified dates, helper text   |
 
 ### Spacing & Layout Foundation
 
@@ -303,14 +303,14 @@ Contrast ratios: `ev-text` on `ev-bg` = 17:1 (AAA). `ev-accent` on `ev-bg` = 7.2
 
 Six directions were generated and evaluated as an interactive HTML showcase (`ux-design-directions.html`):
 
-| # | Name | Character |
-|---|---|---|
-| 1 · Signal | Dark, single-column, teal accent, display headline | Closest to PRD vision |
-| 2 · Ledger | Data-table, two-column hero, blue accent | Data-dense but breaks on mobile |
-| 3 · Ember | Dark warm, amber/gold accent | Warm but wrong emotional association |
-| 4 · Minimal | Light mode, teal accent | Trustworthy but contradicts dark spec |
-| 5 · Grid | Magazine editorial, bold grid lines | Authoritative but complex responsive |
-| 6 · Flow | Gradient, card grid, app-store feel | Striking but fragments emotional arc |
+| #           | Name                                               | Character                             |
+| ----------- | -------------------------------------------------- | ------------------------------------- |
+| 1 · Signal  | Dark, single-column, teal accent, display headline | Closest to PRD vision                 |
+| 2 · Ledger  | Data-table, two-column hero, blue accent           | Data-dense but breaks on mobile       |
+| 3 · Ember   | Dark warm, amber/gold accent                       | Warm but wrong emotional association  |
+| 4 · Minimal | Light mode, teal accent                            | Trustworthy but contradicts dark spec |
+| 5 · Grid    | Magazine editorial, bold grid lines                | Authoritative but complex responsive  |
+| 6 · Flow    | Gradient, card grid, app-store feel                | Striking but fragments emotional arc  |
 
 ### Chosen Direction
 
@@ -399,13 +399,13 @@ flowchart TD
 
 ### Journey Patterns
 
-| Pattern | Applies to |
-|---|---|
-| **Default-first reveal** — answer visible before any input | Ion, Vasile |
-| **Slider-triggered recalculation** — all dependent values update simultaneously | Ion, Natalia, Vasile |
-| **Language switch** — full re-render, no partial state | Natalia |
-| **Progressive disclosure** — masa explainer, ANRE fallback visible only when needed | All |
-| **One-tap CTA exit** — App Store link ends the journey without friction | Ion |
+| Pattern                                                                             | Applies to           |
+| ----------------------------------------------------------------------------------- | -------------------- |
+| **Default-first reveal** — answer visible before any input                          | Ion, Vasile          |
+| **Slider-triggered recalculation** — all dependent values update simultaneously     | Ion, Natalia, Vasile |
+| **Language switch** — full re-render, no partial state                              | Natalia              |
+| **Progressive disclosure** — masa explainer, ANRE fallback visible only when needed | All                  |
+| **One-tap CTA exit** — App Store link ends the journey without friction             | Ion                  |
 
 ### Flow Optimisation Principles
 
@@ -421,20 +421,20 @@ Tailwind CSS provides no pre-built UI components — all components are custom-b
 
 ### Custom Components
 
-| Component | Priority | Purpose |
-|---|---|---|
-| `LossHeadline` | P0 | Personalised monthly loss figure, above fold, live-updating |
-| `SliderInput` | P0 | Labelled range input with live value display and hint text |
-| `OperatorCard` | P0 | Charging operator tariff data with freshness date |
-| `StatBox` / `StatGrid` | P0 | Monthly / Annual / 5-Year savings in 3-column grid |
-| `SavingsCounter` | P0 | Animated count-up triggered by IntersectionObserver |
-| `StickyHeader` | P0 | Anchor nav + language switcher; transparent → solid on scroll |
-| `LanguageSwitcher` | P0 | RO / EN / RU dropdown triggering full i18n re-render |
-| `TaxComparison` | P1 | EV vs ICE road tax side-by-side |
-| `AnreFreshnessBanner` | P1 | Live vs fallback ANRE data status indicator |
-| `ProgressiveDisclosure` | P1 | Expandable section for masa explainer and methodology |
-| `NextStepsCTA` | P1 | App Store / Play Store deep links |
-| `CO2Visual` | P2 | Trees-planted-per-year visualisation (V1 optional) |
+| Component               | Priority | Purpose                                                       |
+| ----------------------- | -------- | ------------------------------------------------------------- |
+| `LossHeadline`          | P0       | Personalised monthly loss figure, above fold, live-updating   |
+| `SliderInput`           | P0       | Labelled range input with live value display and hint text    |
+| `OperatorCard`          | P0       | Charging operator tariff data with freshness date             |
+| `StatBox` / `StatGrid`  | P0       | Monthly / Annual / 5-Year savings in 3-column grid            |
+| `SavingsCounter`        | P0       | Animated count-up triggered by IntersectionObserver           |
+| `StickyHeader`          | P0       | Anchor nav + language switcher; transparent → solid on scroll |
+| `LanguageSwitcher`      | P0       | RO / EN / RU dropdown triggering full i18n re-render          |
+| `TaxComparison`         | P1       | EV vs ICE road tax side-by-side                               |
+| `AnreFreshnessBanner`   | P1       | Live vs fallback ANRE data status indicator                   |
+| `ProgressiveDisclosure` | P1       | Expandable section for masa explainer and methodology         |
+| `NextStepsCTA`          | P1       | App Store / Play Store deep links                             |
+| `CO2Visual`             | P2       | Trees-planted-per-year visualisation (V1 optional)            |
 
 **Component Specifications:**
 
@@ -460,37 +460,37 @@ All components consume Tailwind design tokens exclusively — no inline styles, 
 
 ### Implementation Roadmap
 
-| Phase | Components | Rationale |
-|---|---|---|
-| 1 — Shell | `StickyHeader`, `LanguageSwitcher` | Structural foundation; all sections depend on these |
-| 2 — Core value | `LossHeadline`, `SliderInput` | Primary UX thesis; must work before anything else |
-| 3 — Trust anchors | `OperatorCard`, `AnreFreshnessBanner` | Credibility layer |
-| 4 — Education | `TaxComparison`, `ProgressiveDisclosure` | Myth-buster section |
-| 5 — Impact | `StatGrid`, `SavingsCounter` | Emotional peak of the page |
-| 6 — Action | `NextStepsCTA` | Journey completion |
-| 7 — Delight (V1 optional) | `CO2Visual` | Drops without breaking the financial argument |
+| Phase                     | Components                               | Rationale                                           |
+| ------------------------- | ---------------------------------------- | --------------------------------------------------- |
+| 1 — Shell                 | `StickyHeader`, `LanguageSwitcher`       | Structural foundation; all sections depend on these |
+| 2 — Core value            | `LossHeadline`, `SliderInput`            | Primary UX thesis; must work before anything else   |
+| 3 — Trust anchors         | `OperatorCard`, `AnreFreshnessBanner`    | Credibility layer                                   |
+| 4 — Education             | `TaxComparison`, `ProgressiveDisclosure` | Myth-buster section                                 |
+| 5 — Impact                | `StatGrid`, `SavingsCounter`             | Emotional peak of the page                          |
+| 6 — Action                | `NextStepsCTA`                           | Journey completion                                  |
+| 7 — Delight (V1 optional) | `CO2Visual`                              | Drops without breaking the financial argument       |
 
 ## UX Consistency Patterns
 
 ### Button Hierarchy
 
-| Tier | Usage | Visual |
-|---|---|---|
-| Primary | App Store CTAs, one main action per section max | `ev-accent` background, `ev-bg` text, 8px radius |
-| Ghost | Secondary actions ("Află mai mult", operator detail) | Transparent, `ev-accent` border + text |
-| Inline text | Help links, source attribution | No border, `ev-muted` colour, underline on hover |
+| Tier        | Usage                                                | Visual                                           |
+| ----------- | ---------------------------------------------------- | ------------------------------------------------ |
+| Primary     | App Store CTAs, one main action per section max      | `ev-accent` background, `ev-bg` text, 8px radius |
+| Ghost       | Secondary actions ("Află mai mult", operator detail) | Transparent, `ev-accent` border + text           |
+| Inline text | Help links, source attribution                       | No border, `ev-muted` colour, underline on hover |
 
 No "Calculate" button exists anywhere in the app — this is a deliberate anti-pattern for this product.
 
 ### Feedback Patterns
 
-| State | Trigger | Visual |
-|---|---|---|
-| Live ANRE data | Fetch succeeded on mount | Teal dot + "Prețuri ANRE actualizate: [HH:MM]" |
-| Fallback ANRE data | Fetch failed or timed out (>3s) | Amber dot + "Prețuri din cache: [dd mmm yyyy]" — never an error message |
-| Value updated | Any slider moved | 300ms highlight pulse on all dependent numeric values (`@keyframes` flash) |
-| Savings section entered | `IntersectionObserver` fires | `SavingsCounter` animation triggers once; does not re-trigger |
-| Disclosure expanded | User opens masa explainer | Smooth `max-height` CSS transition — no layout jump |
+| State                   | Trigger                         | Visual                                                                     |
+| ----------------------- | ------------------------------- | -------------------------------------------------------------------------- |
+| Live ANRE data          | Fetch succeeded on mount        | Teal dot + "Prețuri ANRE actualizate: [HH:MM]"                             |
+| Fallback ANRE data      | Fetch failed or timed out (>3s) | Amber dot + "Prețuri din cache: [dd mmm yyyy]" — never an error message    |
+| Value updated           | Any slider moved                | 300ms highlight pulse on all dependent numeric values (`@keyframes` flash) |
+| Savings section entered | `IntersectionObserver` fires    | `SavingsCounter` animation triggers once; does not re-trigger              |
+| Disclosure expanded     | User opens masa explainer       | Smooth `max-height` CSS transition — no layout jump                        |
 
 ### Form / Input Patterns
 
@@ -509,13 +509,13 @@ No "Calculate" button exists anywhere in the app — this is a deliberate anti-p
 
 ### Data State Patterns
 
-| Scenario | Behaviour |
-|---|---|
-| Initial page load | Content renders immediately with hardcoded defaults; ANRE fetch runs in background |
-| ANRE fetch resolves | Headline and fuel-cost values update in place with fade transition |
-| ANRE fetch timeout | Fallback activates silently; banner switches to amber state |
-| Savings result ≈ 0 | Shows "Economii minime la acest profil" — never a negative number |
-| Language key missing | Falls back to Romanian — never exposes raw i18n key strings |
+| Scenario             | Behaviour                                                                          |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| Initial page load    | Content renders immediately with hardcoded defaults; ANRE fetch runs in background |
+| ANRE fetch resolves  | Headline and fuel-cost values update in place with fade transition                 |
+| ANRE fetch timeout   | Fallback activates silently; banner switches to amber state                        |
+| Savings result ≈ 0   | Shows "Economii minime la acest profil" — never a negative number                  |
+| Language key missing | Falls back to Romanian — never exposes raw i18n key strings                        |
 
 ### Typography Consistency
 
@@ -528,6 +528,7 @@ No "Calculate" button exists anywhere in the app — this is a deliberate anti-p
 ### Responsive Strategy
 
 **Mobile (360–767px) — primary design target:**
+
 - Single column, full-width sections
 - Header: logo + 4 compact anchor links in one row (no hamburger needed)
 - Display headline: 48px (scales down from 68px desktop)
@@ -535,11 +536,13 @@ No "Calculate" button exists anywhere in the app — this is a deliberate anti-p
 - Stat grid: 3-column on ≥480px, single column below 480px
 
 **Tablet (768–1023px):**
+
 - Same single-column layout — no structural change
 - Section padding: 56px vertical
 - Operator cards: optional 2-column grid if ≥2 cards visible
 
 **Desktop (≥1024px):**
+
 - Max-width 720px content column, centred — single column intentional
 - Display headline: 68–72px
 - Section padding: 64px vertical
@@ -559,17 +562,17 @@ Mobile-first implementation: base styles target 360px; `md:` and `lg:` override 
 
 **Target: WCAG 2.1 AA**
 
-| Area | Requirement | Implementation |
-|---|---|---|
-| Colour contrast | 4.5:1 normal text, 3:1 large text | `ev-text` on `ev-bg` = 17:1 ✓; `ev-accent` on `ev-bg` = 7.2:1 ✓ |
-| Keyboard navigation | All interactive elements reachable by Tab | Sliders, header links, language switcher, disclosures, CTAs in natural DOM order |
-| Focus indicators | Visible ring on all focusable elements | `focus-visible:ring-2 focus-visible:ring-ev-accent` via Tailwind |
-| Screen reader | Meaningful labels on all controls | `aria-label` on sliders; `aria-live="polite"` on hero headline and language switcher |
-| Motion | Animated counter respects preference | `prefers-reduced-motion: reduce` → counter shows final value immediately |
-| Touch targets | Min 44×44px | Slider thumb 28px visual / 44px effective via padding; CTA min-height 48px |
-| Language attribute | `lang` updated on language switch | `document.documentElement.lang` updated when user changes language |
-| Skip link | Skip to main content | Visually hidden `<a href="#main-content">` as first DOM element, visible on focus |
-| Semantic HTML | Correct heading hierarchy | `h1` page title → `h2` section titles → `h3` card titles; no levels skipped |
+| Area                | Requirement                               | Implementation                                                                       |
+| ------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------ |
+| Colour contrast     | 4.5:1 normal text, 3:1 large text         | `ev-text` on `ev-bg` = 17:1 ✓; `ev-accent` on `ev-bg` = 7.2:1 ✓                      |
+| Keyboard navigation | All interactive elements reachable by Tab | Sliders, header links, language switcher, disclosures, CTAs in natural DOM order     |
+| Focus indicators    | Visible ring on all focusable elements    | `focus-visible:ring-2 focus-visible:ring-ev-accent` via Tailwind                     |
+| Screen reader       | Meaningful labels on all controls         | `aria-label` on sliders; `aria-live="polite"` on hero headline and language switcher |
+| Motion              | Animated counter respects preference      | `prefers-reduced-motion: reduce` → counter shows final value immediately             |
+| Touch targets       | Min 44×44px                               | Slider thumb 28px visual / 44px effective via padding; CTA min-height 48px           |
+| Language attribute  | `lang` updated on language switch         | `document.documentElement.lang` updated when user changes language                   |
+| Skip link           | Skip to main content                      | Visually hidden `<a href="#main-content">` as first DOM element, visible on focus    |
+| Semantic HTML       | Correct heading hierarchy                 | `h1` page title → `h2` section titles → `h3` card titles; no levels skipped          |
 
 ### Testing Checklist
 

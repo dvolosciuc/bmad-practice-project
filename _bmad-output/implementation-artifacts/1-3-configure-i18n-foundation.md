@@ -80,7 +80,7 @@ export default i18next
 
 ```tsx
 // src/main.tsx
-import './i18n'           // MUST be first — initialises i18next before React tree mounts
+import './i18n' // MUST be first — initialises i18next before React tree mounts
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
@@ -89,7 +89,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
 ```
 
@@ -98,6 +98,7 @@ If `./i18n` is imported after the React root, components may render before trans
 ### locale Key Naming Convention
 
 All i18n keys follow `section.element` dot-notation camelCase:
+
 - `hero.lossLabel`, `hero.lossUnit`
 - `charging.sectionTitle`, `charging.lastVerified`
 - `tax.sectionTitle`, `tax.masaExplainer`
@@ -127,12 +128,14 @@ With Vite's default TypeScript config, importing JSON files (`import ro from './
 ### Project Structure Notes
 
 Files created in this story:
+
 - `src/i18n.ts` (new)
 - `src/locales/ro.json` (new — replaces `.gitkeep`)
 - `src/locales/en.json` (new — replaces `.gitkeep`)
 - `src/locales/ru.json` (new — replaces `.gitkeep`)
 
 Files modified:
+
 - `src/main.tsx` — add `import './i18n'` at top
 - `src/App.tsx` — add `useTranslation` usage for smoke-test
 

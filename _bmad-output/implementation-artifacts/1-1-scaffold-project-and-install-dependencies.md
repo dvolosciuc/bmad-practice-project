@@ -66,10 +66,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
 })
 ```
 
@@ -117,12 +114,12 @@ moldova-ev-overview/
 
 All subsequent stories depend on these conventions being established from the start:
 
-| Category | Convention |
-|---|---|
-| Component files | PascalCase `.tsx` |
-| Utility/lib files | camelCase `.ts` |
-| Styling | Tailwind utility classes only — no `.css` files except `index.css` |
-| Props interfaces | `ComponentNameProps` suffix |
+| Category          | Convention                                                         |
+| ----------------- | ------------------------------------------------------------------ |
+| Component files   | PascalCase `.tsx`                                                  |
+| Utility/lib files | camelCase `.ts`                                                    |
+| Styling           | Tailwind utility classes only — no `.css` files except `index.css` |
+| Props interfaces  | `ComponentNameProps` suffix                                        |
 
 [Source: architecture.md#Naming Conventions]
 

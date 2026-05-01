@@ -56,7 +56,7 @@ function FullCard({ operator }: { operator: OperatorData }) {
           </tr>
         </thead>
         <tbody>
-          {operator.tariffs?.map(tariff => (
+          {operator.tariffs?.map((tariff) => (
             <tr key={tariff.region} className="border-t border-ev-surface-2">
               <td className="py-2 text-ev-text">{t(`charging.region.${tariff.region}`)}</td>
               <td className="py-2 text-right text-ev-accent font-medium">{tariff.acFromMDL}</td>
@@ -70,14 +70,22 @@ function FullCard({ operator }: { operator: OperatorData }) {
       </p>
       <div className="flex gap-3">
         {operator.appStoreUrl && (
-          <a href={operator.appStoreUrl} target="_blank" rel="noopener noreferrer"
-             className="px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center">
+          <a
+            href={operator.appStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center"
+          >
             {t('charging.appStore')}
           </a>
         )}
         {operator.playStoreUrl && (
-          <a href={operator.playStoreUrl} target="_blank" rel="noopener noreferrer"
-             className="px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center">
+          <a
+            href={operator.playStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center"
+          >
             {t('charging.playStore')}
           </a>
         )}
@@ -97,11 +105,17 @@ function PlaceholderCard({ operator }: { operator: OperatorData }) {
       <div>
         <h3 className="text-lg font-semibold text-ev-text">{operator.name}</h3>
         <p className="text-[13px] text-ev-muted mt-1">{t('charging.tariffNotListed')}</p>
-        <p className="text-[13px] text-ev-muted">{t('charging.lastVerified')}: {operator.lastVerified}</p>
+        <p className="text-[13px] text-ev-muted">
+          {t('charging.lastVerified')}: {operator.lastVerified}
+        </p>
       </div>
       {operator.appUrl && (
-        <a href={operator.appUrl} target="_blank" rel="noopener noreferrer"
-           className="px-4 py-2 border border-ev-accent text-ev-accent rounded-lg text-sm font-medium min-h-[44px] flex items-center">
+        <a
+          href={operator.appUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 border border-ev-accent text-ev-accent rounded-lg text-sm font-medium min-h-[44px] flex items-center"
+        >
           {t('charging.seeApp')}
         </a>
       )}
@@ -110,9 +124,7 @@ function PlaceholderCard({ operator }: { operator: OperatorData }) {
 }
 
 export default function OperatorCard({ operator }: { operator: OperatorData }) {
-  return operator.variant === 'full'
-    ? <FullCard operator={operator} />
-    : <PlaceholderCard operator={operator} />
+  return operator.variant === 'full' ? <FullCard operator={operator} /> : <PlaceholderCard operator={operator} />
 }
 ```
 
@@ -136,6 +148,7 @@ export default function OperatorCard({ operator }: { operator: OperatorData }) {
 ### Section Label Pattern
 
 All sections use the same label pattern:
+
 ```tsx
 <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">
   {t('charging.sectionLabel')}
@@ -152,10 +165,12 @@ All external links must have `target="_blank"` AND `rel="noopener noreferrer"` t
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/OperatorCard.tsx`
 - `src/components/ChargingSection.tsx`
 
 Files modified:
+
 - `src/App.tsx` — replace charging placeholder with `<ChargingSection />`
 - `src/locales/ro.json` — add charging keys
 - `src/locales/en.json` — add charging keys
@@ -170,6 +185,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

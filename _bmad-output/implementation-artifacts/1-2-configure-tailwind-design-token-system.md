@@ -42,7 +42,7 @@ Tailwind CSS v4 defines design tokens using CSS custom properties inside an `@th
 
 ```css
 /* src/index.css */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Colours */
@@ -79,16 +79,16 @@ This generates utility classes like `bg-ev-bg`, `text-ev-accent`, `border-ev-sur
 
 ### Colour Token Reference
 
-| Token | Hex | Tailwind Class | Use |
-|---|---|---|---|
-| `ev-bg` | `#0f1117` | `bg-ev-bg` | Page background |
-| `ev-surface` | `#1a1d27` | `bg-ev-surface` | Cards, section backgrounds |
-| `ev-surface-2` | `#252836` | `bg-ev-surface-2` | Nested surfaces, hover states |
-| `ev-accent` | `#2dd4bf` | `text-ev-accent`, `bg-ev-accent` | CTAs, highlights, active sliders |
-| `ev-accent-hover` | `#14b8a6` | `bg-ev-accent-hover` | Hover/pressed accent state |
-| `ev-text` | `#f8fafc` | `text-ev-text` | Primary text |
-| `ev-muted` | `#94a3b8` | `text-ev-muted` | Labels, timestamps, secondary text |
-| `ev-warning` | `#f59e0b` | `text-ev-warning`, `bg-ev-warning` | ANRE fallback indicator |
+| Token             | Hex       | Tailwind Class                     | Use                                |
+| ----------------- | --------- | ---------------------------------- | ---------------------------------- |
+| `ev-bg`           | `#0f1117` | `bg-ev-bg`                         | Page background                    |
+| `ev-surface`      | `#1a1d27` | `bg-ev-surface`                    | Cards, section backgrounds         |
+| `ev-surface-2`    | `#252836` | `bg-ev-surface-2`                  | Nested surfaces, hover states      |
+| `ev-accent`       | `#2dd4bf` | `text-ev-accent`, `bg-ev-accent`   | CTAs, highlights, active sliders   |
+| `ev-accent-hover` | `#14b8a6` | `bg-ev-accent-hover`               | Hover/pressed accent state         |
+| `ev-text`         | `#f8fafc` | `text-ev-text`                     | Primary text                       |
+| `ev-muted`        | `#94a3b8` | `text-ev-muted`                    | Labels, timestamps, secondary text |
+| `ev-warning`      | `#f59e0b` | `text-ev-warning`, `bg-ev-warning` | ANRE fallback indicator            |
 
 [Source: ux-design-specification.md#Color System, architecture.md#Tailwind Design Tokens]
 
@@ -101,10 +101,11 @@ Tailwind v4 defaults: `sm=640px`, `md=768px`, `lg=1024px`. The project needs `sm
 ### Inter Font Loading
 
 Add to `index.html` `<head>`:
+
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 ```
 
 This is the only external font CDN call in the project. It does NOT violate NFR8 (no third-party tracking scripts) — Google Fonts is a font CDN, not a tracking script.
@@ -113,14 +114,14 @@ This is the only external font CDN call in the project. It does NOT violate NFR8
 
 ### Typography Scale Reference (for subsequent stories)
 
-| Scale | Size | Weight | Tailwind |
-|---|---|---|---|
-| `display` | 48–72px | 800 | `text-5xl md:text-6xl lg:text-7xl font-extrabold` |
-| `h1` | 36px | 700 | `text-4xl font-bold` |
-| `h2` | 24px | 600 | `text-2xl font-semibold` |
-| `body` | 16px | 400 | `text-base font-normal` |
-| `label` | 14px | 500 | `text-sm font-medium` |
-| `small` | 13px | 400 | `text-[13px] font-normal` |
+| Scale     | Size    | Weight | Tailwind                                          |
+| --------- | ------- | ------ | ------------------------------------------------- |
+| `display` | 48–72px | 800    | `text-5xl md:text-6xl lg:text-7xl font-extrabold` |
+| `h1`      | 36px    | 700    | `text-4xl font-bold`                              |
+| `h2`      | 24px    | 600    | `text-2xl font-semibold`                          |
+| `body`    | 16px    | 400    | `text-base font-normal`                           |
+| `label`   | 14px    | 500    | `text-sm font-medium`                             |
+| `small`   | 13px    | 400    | `text-[13px] font-normal`                         |
 
 These are **not** configured as `@theme` custom properties — they are applied via Tailwind utility class composition in each component. Document them here so later stories don't reinvent them.
 

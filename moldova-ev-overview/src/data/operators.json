@@ -1,0 +1,44 @@
+[
+  {
+    "id": "evpoint",
+    "name": "EVPoint",
+    "variant": "full",
+    "lastVerified": "2026-04-30",
+    "tariffs": [
+      { "region": "centru_sud", "acFromMDL": 7.44, "dcFromMDL": 9.48 },
+      { "region": "nord", "acFromMDL": 7.8, "dcFromMDL": 10.44 }
+    ],
+    "appStoreUrl": "https://apps.apple.com/md/app/evpoint-moldova/id1536107978",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.evpoint.md"
+  },
+  {
+    "id": "echarge",
+    "name": "eCharge Moldova",
+    "variant": "placeholder",
+    "lastVerified": "2026-04-30",
+    "appStoreUrl": "https://apps.apple.com/md/app/echarge-moldova/id6458590354",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=md.echarge",
+    "appUrl": "https://echarge.md"
+  },
+  {
+    "id": "ekofactor",
+    "name": "ekofactor",
+    "variant": "placeholder",
+    "lastVerified": "2026-04-30",
+    "appUrl": "https://ekofactor.md"
+  },
+  {
+    "id": "ecodrive",
+    "name": "eco drive",
+    "variant": "placeholder",
+    "lastVerified": "2026-04-30",
+    "appUrl": "https://ecodrive.md"
+  },
+  {
+    "id": "gotou",
+    "name": "go to-u",
+    "variant": "placeholder",
+    "lastVerified": "2026-04-30",
+    "appUrl": "https://gotou.md"
+  }
+]

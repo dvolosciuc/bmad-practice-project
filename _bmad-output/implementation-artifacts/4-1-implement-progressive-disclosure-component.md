@@ -46,9 +46,7 @@ export default function ProgressiveDisclosure({ summary, children }: Progressive
         {summary}
       </summary>
       <div className="overflow-hidden">
-        <div className="pt-3 pb-1 text-sm text-ev-muted leading-relaxed">
-          {children}
-        </div>
+        <div className="pt-3 pb-1 text-sm text-ev-muted leading-relaxed">{children}</div>
       </div>
     </details>
   )
@@ -62,6 +60,7 @@ CSS `max-height` animation on `<details>` content is tricky because the browser 
 **Option A (simplest — use for V1):** Accept a subtle jump with just `transition-colors` on the summary. The content appears/disappears instantly, but the chevron rotation is smooth. Acceptable for this use case.
 
 **Option B (smooth):** Use `useRef` + `useState` to measure the content height and animate programmatically:
+
 ```tsx
 const [open, setOpen] = useState(false)
 const contentRef = useRef<HTMLDivElement>(null)
@@ -87,6 +86,7 @@ Native `<details>` / `<summary>` is supported in all target browsers: Chrome, Sa
 ### Accessibility — Built-in
 
 Native `<details>` / `<summary>` provides keyboard accessibility for free:
+
 - `Tab` focuses the `<summary>` element
 - `Enter` or `Space` toggles open/closed
 - Screen readers announce the expanded/collapsed state via the `open` attribute
@@ -98,6 +98,7 @@ No additional ARIA attributes needed.
 ### Reusability
 
 This component will be used in:
+
 - Story 4.2: Tax section (masa explainer)
 - Potentially other secondary content areas
 
@@ -106,6 +107,7 @@ Keep it fully generic — accept any `children`, no domain-specific props.
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/ProgressiveDisclosure.tsx`
 
 ### References
@@ -117,6 +119,9 @@ Files created:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

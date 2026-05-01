@@ -42,7 +42,7 @@ so that a malformed tariff file causes the build to fail rather than deploying s
     "lastVerified": "2026-04-30",
     "tariffs": [
       { "region": "centru_sud", "acFromMDL": 7.44, "dcFromMDL": 9.48 },
-      { "region": "nord",       "acFromMDL": 7.80, "dcFromMDL": 10.44 }
+      { "region": "nord", "acFromMDL": 7.8, "dcFromMDL": 10.44 }
     ],
     "appStoreUrl": "https://apps.apple.com/app/evpoint/id...",
     "playStoreUrl": "https://play.google.com/store/apps/details?id=..."
@@ -85,6 +85,7 @@ so that a malformed tariff file causes the build to fail rather than deploying s
 ### TypeScript Type Enforcement Pattern
 
 In `App.tsx` (or a dedicated `src/data/index.ts` loader):
+
 ```ts
 import operatorsRaw from './data/operators.json'
 import type { OperatorData } from './lib/types'
@@ -94,6 +95,7 @@ const operators: OperatorData[] = operatorsRaw as unknown as OperatorData[]
 ```
 
 > ⚠️ Vite imports JSON as `any` by default. The `as unknown as OperatorData[]` cast is a runtime-only assertion — it won't catch structural mismatches at build time on its own. To get a true compile-time check, use a satisfies assertion or a Zod schema. For V1 simplicity, use:
+
 ```ts
 function assertOperators(data: unknown): asserts data is OperatorData[] {
   // Minimal runtime check — enough to catch obvious structural errors
@@ -108,6 +110,7 @@ This gives a runtime crash (caught at deploy test) rather than silent bad data. 
 ### Maintainer Update Workflow
 
 When EVPoint changes tariffs, Andrei:
+
 1. Opens `src/data/operators.json`
 2. Updates `acFromMDL`, `dcFromMDL`, and `lastVerified` for the relevant entry
 3. Commits and pushes to `main` — Netlify deploys in ~90 seconds
@@ -119,9 +122,11 @@ No other files need to change for a tariff update.
 ### Project Structure Notes
 
 Files created:
+
 - `src/data/operators.json`
 
 Files modified:
+
 - `src/App.tsx` — import and type-assert operators data
 
 ### References
@@ -135,6 +140,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

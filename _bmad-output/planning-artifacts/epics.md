@@ -108,23 +108,24 @@ UX-DR20: Implement mobile-first responsive layout — single column, max-width 7
 
 ### FR Coverage Map
 
-| FR | Epic | Description |
-|---|---|---|
-| FR1–FR6 | Epic 2 | Sliders + live recalculation + defaults on load |
-| FR7–FR9 | Epic 3 | EVPoint tariffs + secondary operator cards + App Store links |
-| FR10–FR12 | Epic 4 | Road tax comparison + masa explainer + talon hint |
-| FR13 | Epic 2 | Loss-aversion headline (pierzi X MDL/lună) |
-| FR14–FR18 | Epic 5 | Savings counter + stat grid + break-even + CO₂ + CTAs |
-| FR19–FR20 | Epic 3 | ANRE fallback strategy + freshness banner |
-| FR21–FR22 | Epic 6 | Language switch (RO/EN) + localStorage persistence |
-| FR23 | Epic 3 | Maintainer operators.json workflow |
-| FR24 | Epic 2 | Anchor navigation from sticky header |
-| FR25–FR28 | Epic 6 | Browser support + keyboard nav + SEO + OG social preview |
-| FR29 | Epic 1 | Auto-deploy on push to main |
+| FR        | Epic   | Description                                                  |
+| --------- | ------ | ------------------------------------------------------------ |
+| FR1–FR6   | Epic 2 | Sliders + live recalculation + defaults on load              |
+| FR7–FR9   | Epic 3 | EVPoint tariffs + secondary operator cards + App Store links |
+| FR10–FR12 | Epic 4 | Road tax comparison + masa explainer + talon hint            |
+| FR13      | Epic 2 | Loss-aversion headline (pierzi X MDL/lună)                   |
+| FR14–FR18 | Epic 5 | Savings counter + stat grid + break-even + CO₂ + CTAs        |
+| FR19–FR20 | Epic 3 | ANRE fallback strategy + freshness banner                    |
+| FR21–FR22 | Epic 6 | Language switch (RO/EN) + localStorage persistence           |
+| FR23      | Epic 3 | Maintainer operators.json workflow                           |
+| FR24      | Epic 2 | Anchor navigation from sticky header                         |
+| FR25–FR28 | Epic 6 | Browser support + keyboard nav + SEO + OG social preview     |
+| FR29      | Epic 1 | Auto-deploy on push to main                                  |
 
 ## Epic List
 
 ### Epic 1: Deployable Project Foundation
+
 A working skeleton app is scaffolded using the Vite react-ts template, configured with the full Tailwind design token system and i18n plumbing, and auto-deploys to Netlify on every push to `main`. Andrei (the maintainer) can push and see a live deploy within 90 seconds from day one.
 **FRs covered:** FR29
 **NFRs:** NFR6
@@ -132,6 +133,7 @@ A working skeleton app is scaffolded using the Vite react-ts template, configure
 **UX:** UX-DR1 (Tailwind tokens), UX-DR2 (typography scale)
 
 ### Epic 2: Live Cost Calculator — Core Value Proposition
+
 Visitors see their personalised Moldova-specific monthly EV saving framed as a loss above the fold at first paint, with sensible defaults. All four sliders update every dependent value instantly. The sticky header with anchor navigation is in place. Ion completes his primary journey end-to-end.
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR13, FR24
 **NFRs:** NFR1, NFR2, NFR3
@@ -139,23 +141,27 @@ Visitors see their personalised Moldova-specific monthly EV saving framed as a l
 **UX:** UX-DR3, UX-DR4, UX-DR5, UX-DR9, UX-DR14, UX-DR15, UX-DR16, UX-DR20
 
 ### Epic 3: Charging Operator Directory & Data Transparency
+
 Visitors see EVPoint's real regional tariffs (AC/DC by Centru/Sud and Nord) plus placeholder cards for all other operators. The ANRE freshness banner is always present (V1 = fallback mode with visible date). Andrei can update tariffs by editing `operators.json` and pushing — schema is enforced at build time.
 **FRs covered:** FR7, FR8, FR9, FR19, FR20, FR23
 **NFRs:** NFR4, NFR14, NFR15, NFR16
 **UX:** UX-DR6 (OperatorCard), UX-DR12 (AnreFreshnessBanner)
 
 ### Epic 4: Road Tax Education
+
 Visitors see the EV vs ICE road tax side-by-side based on their configured vehicle weight. The "masa totală autorizată" concept is explained via progressive disclosure with a talon hint. The Moldova EV=ICE road tax myth is busted.
 **FRs covered:** FR10, FR11, FR12
 **UX:** UX-DR11 (TaxComparison), UX-DR13 (ProgressiveDisclosure)
 
 ### Epic 5: Savings Impact & Call to Action
+
 Visitors see the full savings impact: monthly/annual/5-year stat grid, animated count-up counter triggered by scroll (respects `prefers-reduced-motion`), break-even timeline, CO₂ trees visualisation (V1 optional), and EVPoint App Store CTAs. Ion screenshots the 5-year figure and shares the link.
 **FRs covered:** FR14, FR15, FR16, FR17, FR18
 **NFRs:** NFR5
 **UX:** UX-DR7 (StatBox/StatGrid), UX-DR8 (SavingsCounter), UX-DR17 (NextStepsCTA), UX-DR18 (CO2Visual)
 
 ### Epic 6: Internationalisation & Production Polish
+
 Visitors can switch between Romanian and English with full page re-render and localStorage persistence. The app is SEO-indexed with Open Graph social preview. Keyboard accessibility and screen reader basics are complete. All browser targets pass. The product is ready for public launch.
 **FRs covered:** FR21, FR22, FR25, FR26, FR27, FR28
 **NFRs:** NFR7, NFR8, NFR9, NFR10, NFR11, NFR12, NFR13

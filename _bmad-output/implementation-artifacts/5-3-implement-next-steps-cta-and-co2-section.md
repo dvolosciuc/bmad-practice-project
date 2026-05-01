@@ -41,7 +41,7 @@ so that I can immediately act on what I've learned without searching for where t
 ### CO₂ to Trees Conversion
 
 ```ts
-const TREES_PER_KG_CO2_PER_YEAR = 1 / 21.7  // 1 tree absorbs ~21.7 kg CO₂/year (IPCC estimate)
+const TREES_PER_KG_CO2_PER_YEAR = 1 / 21.7 // 1 tree absorbs ~21.7 kg CO₂/year (IPCC estimate)
 const treesPerYear = Math.max(0, Math.round(co2AnnualKg * TREES_PER_KG_CO2_PER_YEAR))
 ```
 
@@ -73,9 +73,7 @@ export default function CO2Section({ co2AnnualKg }: CO2SectionProps) {
         </p>
         <h2 className="text-4xl font-bold text-ev-text mb-4">{t('co2.sectionTitle')}</h2>
         {trees > 0 ? (
-          <p className="text-2xl text-ev-text">
-            {t('co2.treesEquivalent', { count: trees })}
-          </p>
+          <p className="text-2xl text-ev-text">{t('co2.treesEquivalent', { count: trees })}</p>
         ) : (
           <p className="text-ev-muted">{t('co2.negligible')}</p>
         )}
@@ -154,10 +152,12 @@ Verify the actual App Store and Play Store URLs from `moldova-ev-market-data.jso
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/CO2Section.tsx`
 - `src/components/NextStepsSection.tsx`
 
 Files modified:
+
 - `src/App.tsx` — wire both sections, pass `co2Annual`
 - `src/locales/ro.json`, `src/locales/en.json` — add co2 and nextSteps keys
 
@@ -171,6 +171,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

@@ -49,8 +49,8 @@ import { useState, useEffect } from 'react'
 
 interface StatBoxProps {
   value: number
-  label: string    // e.g. "lunar", "anual", "5 ani"
-  period: string   // e.g. "pe lună", "pe an", "în 5 ani"
+  label: string // e.g. "lunar", "anual", "5 ani"
+  period: string // e.g. "pe lună", "pe an", "în 5 ani"
 }
 
 export default function StatBox({ value, label, period }: StatBoxProps) {
@@ -63,15 +63,15 @@ export default function StatBox({ value, label, period }: StatBoxProps) {
   }, [value])
 
   const formatted = new Intl.NumberFormat('ro-MD', {
-    style: 'currency', currency: 'MDL', maximumFractionDigits: 0
+    style: 'currency',
+    currency: 'MDL',
+    maximumFractionDigits: 0,
   }).format(value)
 
   return (
     <div className={`bg-ev-surface rounded-lg p-6 text-center ${pulse ? 'highlight-pulse' : ''}`}>
       <p className="text-[13px] text-ev-muted uppercase tracking-wider mb-1">{label}</p>
-      <p className="text-3xl font-bold text-ev-accent [font-variant-numeric:tabular-nums] leading-tight">
-        {formatted}
-      </p>
+      <p className="text-3xl font-bold text-ev-accent [font-variant-numeric:tabular-nums] leading-tight">{formatted}</p>
       <p className="text-[13px] text-ev-muted mt-1">{period}</p>
     </div>
   )
@@ -105,13 +105,13 @@ Use Tailwind arbitrary property: `[font-variant-numeric:tabular-nums]`. This pre
 ### Break-even Display
 
 ```tsx
-{savingsResult.breakEvenMonths !== null ? (
-  <p className="text-sm text-ev-muted mt-4">
-    {t('savings.breakEven', { months: savingsResult.breakEvenMonths })}
-  </p>
-) : (
-  <p className="text-sm text-ev-muted mt-4">{t('savings.negligible')}</p>
-)}
+{
+  savingsResult.breakEvenMonths !== null ? (
+    <p className="text-sm text-ev-muted mt-4">{t('savings.breakEven', { months: savingsResult.breakEvenMonths })}</p>
+  ) : (
+    <p className="text-sm text-ev-muted mt-4">{t('savings.negligible')}</p>
+  )
+}
 ```
 
 i18n key: `"savings.breakEven": "Recuperezi investiția în {{months}} luni"`
@@ -119,9 +119,12 @@ i18n key: `"savings.breakEven": "Recuperezi investiția în {{months}} luni"`
 ### SavingsCounter Placeholder
 
 Story 5.2 adds `SavingsCounter`. For this story, render a placeholder `<div>` where `SavingsCounter` will go, with a comment:
+
 ```tsx
-{/* SavingsCounter — implemented in Story 5.2 */}
-<div className="h-20" />
+{
+  /* SavingsCounter — implemented in Story 5.2 */
+}
+;<div className="h-20" />
 ```
 
 ### Highlight Pulse Reuse
@@ -148,11 +151,13 @@ The same `highlight-pulse` CSS class from Story 2.6 (`@keyframes value-highlight
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/StatBox.tsx`
 - `src/components/StatGrid.tsx`
 - `src/components/SavingsSection.tsx`
 
 Files modified:
+
 - `src/App.tsx` — wire `<SavingsSection />`
 - `src/locales/ro.json`, `src/locales/en.json` — add savings keys
 
@@ -166,6 +171,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

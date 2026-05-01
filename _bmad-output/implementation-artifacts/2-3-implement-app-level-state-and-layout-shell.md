@@ -72,7 +72,7 @@ export default function App() {
   // All derived values computed inline — no useEffect
   const savingsResult = calculateMonthlySavings(inputs, priceData)
   const roadTaxEV = getRoadTax(inputs.vehicleWeightKg)
-  const roadTaxICE = getRoadTax(inputs.vehicleWeightKg)  // identical in Moldova law
+  const roadTaxICE = getRoadTax(inputs.vehicleWeightKg) // identical in Moldova law
   const co2Annual = calcCO2(inputs.kmPerMonth, inputs.fuelType)
 
   return (
@@ -125,11 +125,13 @@ export default function App() {
 ### Handler Pattern for Child Components
 
 When Stories 2.5 and 2.6 add slider components, they will call handlers defined in `App.tsx`:
+
 ```ts
 const handleInputChange = (key: keyof InputState, value: InputState[typeof key]) => {
-  setInputs(prev => ({ ...prev, [key]: value }))
+  setInputs((prev) => ({ ...prev, [key]: value }))
 }
 ```
+
 Define this handler in this story so it is ready for Stories 2.5/2.6 to consume.
 
 [Source: architecture.md#Naming Conventions — "handle prefix for event handlers"]
@@ -137,6 +139,7 @@ Define this handler in this story so it is ready for Stories 2.5/2.6 to consume.
 ### Section IDs — Required for Anchor Navigation
 
 The `id` attributes on `<section>` elements are consumed by the `StickyHeader` in Story 2.4:
+
 - `id="hero"` (or use as the unnamed first section — header links to `#charging`, `#tax`, `#savings`, `#co2`)
 - `id="charging"`
 - `id="tax"`
@@ -154,6 +157,7 @@ Do NOT change these IDs in later stories — the StickyHeader anchor links depen
 ### Project Structure Notes
 
 Files modified:
+
 - `src/App.tsx` (replace placeholder content from Story 1.2 smoke-test)
 
 ### References
@@ -166,6 +170,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

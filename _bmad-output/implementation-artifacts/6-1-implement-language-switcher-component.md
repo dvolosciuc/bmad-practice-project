@@ -68,15 +68,17 @@ export default function LanguageSwitcher() {
           aria-pressed={current === code}
           className={`
             px-2 py-1 text-sm font-medium rounded transition-colors
-            ${current === code
-              ? 'bg-ev-accent text-ev-bg'
-              : disabled
-                ? 'text-ev-muted cursor-not-allowed opacity-50'
-                : 'text-ev-muted hover:text-ev-text'
+            ${
+              current === code
+                ? 'bg-ev-accent text-ev-bg'
+                : disabled
+                  ? 'text-ev-muted cursor-not-allowed opacity-50'
+                  : 'text-ev-muted hover:text-ev-text'
             }
           `}
         >
-          {label}{note && <span className="text-xs ml-0.5 text-ev-muted">{note}</span>}
+          {label}
+          {note && <span className="text-xs ml-0.5 text-ev-muted">{note}</span>}
         </button>
       ))}
     </div>
@@ -93,11 +95,16 @@ export default function LanguageSwitcher() {
 ### StickyHeader Wiring
 
 Locate the placeholder comment in `StickyHeader.tsx` from Story 2.4:
+
 ```tsx
-{/* LanguageSwitcher placeholder — replaced in Story 6.1 */}
-<div className="w-16" />
+{
+  /* LanguageSwitcher placeholder — replaced in Story 6.1 */
+}
+;<div className="w-16" />
 ```
+
 Replace with:
+
 ```tsx
 <LanguageSwitcher />
 ```
@@ -113,9 +120,11 @@ The `aria-live="polite"` span with `className="sr-only"` announces language chan
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/LanguageSwitcher.tsx`
 
 Files modified:
+
 - `src/components/StickyHeader.tsx` — replace placeholder with `<LanguageSwitcher />`
 
 ### References
@@ -128,6 +137,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

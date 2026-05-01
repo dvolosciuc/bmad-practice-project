@@ -51,16 +51,15 @@ export default function SavingsCounter({ targetValue }: SavingsCounterProps) {
   const hasAnimated = useRef(false)
   const animFrameRef = useRef<number>(0)
 
-  const prefersReducedMotion = typeof window !== 'undefined'
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    : false
+  const prefersReducedMotion =
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
 
   const runAnimation = (target: number) => {
     if (prefersReducedMotion) {
       setDisplayed(target)
       return
     }
-    const duration = 1200  // ms
+    const duration = 1200 // ms
     const start = performance.now()
     const animate = (now: number) => {
       const elapsed = now - start
@@ -93,7 +92,7 @@ export default function SavingsCounter({ targetValue }: SavingsCounterProps) {
       observer.disconnect()
       cancelAnimationFrame(animFrameRef.current)
     }
-  }, [])  // Run once on mount — intentional empty deps
+  }, []) // Run once on mount — intentional empty deps
 
   // After animation completes, keep in sync with targetValue changes
   useEffect(() => {
@@ -103,7 +102,9 @@ export default function SavingsCounter({ targetValue }: SavingsCounterProps) {
   }, [targetValue])
 
   const formatted = new Intl.NumberFormat('ro-MD', {
-    style: 'currency', currency: 'MDL', maximumFractionDigits: 0
+    style: 'currency',
+    currency: 'MDL',
+    maximumFractionDigits: 0,
   }).format(displayed)
 
   return (
@@ -152,9 +153,11 @@ After `hasAnimated.current = true`, the second `useEffect` keeps `displayed` in 
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/SavingsCounter.tsx`
 
 Files modified:
+
 - `src/components/SavingsSection.tsx` — replace placeholder with `<SavingsCounter targetValue={savingsResult.monthly} />`
 - `src/locales/ro.json`, `src/locales/en.json` — add counter keys
 
@@ -169,6 +172,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

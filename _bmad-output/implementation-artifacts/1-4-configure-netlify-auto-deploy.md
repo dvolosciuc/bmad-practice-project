@@ -55,6 +55,7 @@ The `[[redirects]]` rule is mandatory for SPAs on Netlify. Without it, directly 
 ### Base Directory Consideration
 
 If the Vite project was scaffolded as `moldova-ev-overview/` inside the BMad practice repo root (`bmad-practice-project/`), then when connecting to Netlify:
+
 - **Repository**: the Git repo root (`bmad-practice-project`)
 - **Base directory**: `moldova-ev-overview`
 - **Build command**: `npm run build` (relative to base directory)
@@ -67,6 +68,7 @@ Alternatively, if `moldova-ev-overview/` is its own Git repository, the base dir
 ### Netlify Free Tier
 
 The free tier is fully sufficient:
+
 - 100GB bandwidth/month
 - 300 build minutes/month
 - Unlimited sites
@@ -102,6 +104,7 @@ No environment variables are required for V1. The app is fully static — no API
 ### Project Structure Notes
 
 Files created in this story:
+
 - `netlify.toml` (new, in project root — `moldova-ev-overview/netlify.toml`)
 
 No other files are modified.

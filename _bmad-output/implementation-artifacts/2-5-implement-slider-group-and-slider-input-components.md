@@ -45,28 +45,30 @@ so that I can adjust the calculation inputs to match my personal driving reality
 ```tsx
 interface SliderInputProps {
   id: string
-  label: string           // already translated by caller
+  label: string // already translated by caller
   value: number
   min: number
   max: number
   step: number
-  unit: string            // e.g. "km/lună", "kg"
-  hint: string            // already translated by caller
+  unit: string // e.g. "km/lună", "kg"
+  hint: string // already translated by caller
   onChange: (value: number) => void
-  ariaValueText?: string  // e.g. "1200 km pe lună"
+  ariaValueText?: string // e.g. "1200 km pe lună"
 }
 ```
 
 ### Touch Target for Range Thumb
 
 Browsers render range thumbs at ~16–20px visually. To achieve 44px effective tap target, use:
+
 ```css
 /* in index.css @layer components or via Tailwind arbitrary */
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   width: 28px;
   height: 28px;
 }
 ```
+
 Additionally, ensure the entire `<input>` element has `min-h-[44px]` padding so the hit area extends to 44px total.
 
 [Source: ux-design-specification.md#SliderInput component spec — "track 20px, thumb 28px, 44px effective"]
@@ -85,8 +87,9 @@ interface SegmentedControlProps<T extends string> {
 Use `<div role="group" aria-label={label}>` wrapper with `<button>` elements (not radio inputs) for the segmented control. Active button: `bg-ev-accent text-ev-bg`. Inactive: `bg-ev-surface-2 text-ev-muted hover:bg-ev-surface`.
 
 Fuel type options:
+
 ```ts
-[
+;[
   { value: 'benzina95', label: t('slider.benzina95') },
   { value: 'motorina', label: t('slider.motorina') },
   { value: 'gpl', label: t('slider.gpl') },
@@ -124,6 +127,7 @@ SliderGroup
 ### No Default Export on SliderInput
 
 All components use named exports... wait — architecture says one named export per file. Use:
+
 ```ts
 export default function SliderInput(...) { ... }
 export default function SegmentedControl(...) { ... }
@@ -135,11 +139,13 @@ export default function SliderGroup(...) { ... }
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/SliderInput.tsx`
 - `src/components/SegmentedControl.tsx`
 - `src/components/SliderGroup.tsx`
 
 Files modified:
+
 - `src/App.tsx` — import and render `<SliderGroup />` in Hero section
 - `src/locales/ro.json` — add slider keys
 - `src/locales/en.json` — add slider keys
@@ -155,6 +161,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

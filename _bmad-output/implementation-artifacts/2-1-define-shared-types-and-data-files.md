@@ -40,9 +40,9 @@ export type Region = 'centru_sud' | 'nord'
 export type ChargingMode = 'public_ac' | 'public_dc'
 
 export interface InputState {
-  kmPerMonth: number        // 300–3000
+  kmPerMonth: number // 300–3000
   fuelType: FuelType
-  vehicleWeightKg: number   // 500–5000
+  vehicleWeightKg: number // 500–5000
   chargingMode: ChargingMode
   region: Region
 }
@@ -51,21 +51,21 @@ export interface SavingsResult {
   monthly: number
   annual: number
   fiveYear: number
-  breakEvenMonths: number | null  // null when savings are negligible
+  breakEvenMonths: number | null // null when savings are negligible
 }
 
 export interface PriceData {
-  benzina95: number   // MDL/litre
-  motorina: number    // MDL/litre
-  gpl: number         // MDL/litre
+  benzina95: number // MDL/litre
+  motorina: number // MDL/litre
+  gpl: number // MDL/litre
   lastVerified: string // ISO date string
   status: 'live' | 'fallback'
 }
 
 export interface OperatorTariff {
   region: Region
-  acFromMDL: number   // MDL/kWh
-  dcFromMDL: number   // MDL/kWh
+  acFromMDL: number // MDL/kWh
+  dcFromMDL: number // MDL/kWh
 }
 
 export interface OperatorData {
@@ -73,10 +73,10 @@ export interface OperatorData {
   name: string
   variant: 'full' | 'placeholder'
   lastVerified: string
-  tariffs?: OperatorTariff[]        // only on 'full' variant
+  tariffs?: OperatorTariff[] // only on 'full' variant
   appStoreUrl?: string
   playStoreUrl?: string
-  appUrl?: string                   // generic app URL for placeholder variant
+  appUrl?: string // generic app URL for placeholder variant
 }
 ```
 
@@ -88,7 +88,7 @@ export interface OperatorData {
 {
   "benzina95": 29.38,
   "motorina": 30.13,
-  "gpl": 14.50,
+  "gpl": 14.5,
   "lastVerified": "2026-04-30"
 }
 ```
@@ -105,16 +105,16 @@ Moldova road tax is calculated per `lei/kg` per bracket. Both EV and ICE use the
 // src/data/roadTax.ts
 export interface RoadTaxBracket {
   minKg: number
-  maxKg: number          // use Infinity for the last bracket
-  ratePerKg: number      // MDL per kg per year
+  maxKg: number // use Infinity for the last bracket
+  ratePerKg: number // MDL per kg per year
 }
 
 export const roadTaxBrackets: RoadTaxBracket[] = [
-  { minKg: 0,    maxKg: 1000, ratePerKg: 0.25 },
-  { minKg: 1001, maxKg: 1500, ratePerKg: 0.30 },
-  { minKg: 1501, maxKg: 2000, ratePerKg: 0.40 },
-  { minKg: 2001, maxKg: 2500, ratePerKg: 0.50 },
-  { minKg: 2501, maxKg: Infinity, ratePerKg: 0.60 },
+  { minKg: 0, maxKg: 1000, ratePerKg: 0.25 },
+  { minKg: 1001, maxKg: 1500, ratePerKg: 0.3 },
+  { minKg: 1501, maxKg: 2000, ratePerKg: 0.4 },
+  { minKg: 2001, maxKg: 2500, ratePerKg: 0.5 },
+  { minKg: 2501, maxKg: Infinity, ratePerKg: 0.6 },
 ]
 ```
 
@@ -156,6 +156,7 @@ The async signature is intentional — it means V2 can replace the body with a r
 ### Project Structure Notes
 
 Files created:
+
 - `src/lib/types.ts` (new — replaces `.gitkeep` in `src/lib/`)
 - `src/lib/anreFetch.ts` (new)
 - `src/data/anre.json` (new — replaces `.gitkeep` in `src/data/`)
@@ -172,6 +173,9 @@ Files created:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

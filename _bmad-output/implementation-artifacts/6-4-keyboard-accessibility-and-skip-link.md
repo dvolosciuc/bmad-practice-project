@@ -54,6 +54,7 @@ The `sr-only focus:not-sr-only` pattern hides the element visually until focused
 Tailwind includes a built-in `sr-only` class. Verify it is available (it should be — it's a standard Tailwind utility).
 
 If for any reason a custom `.sr-only` is needed in `index.css`:
+
 ```css
 .sr-only {
   position: absolute;
@@ -73,6 +74,7 @@ If for any reason a custom `.sr-only` is needed in `index.css`:
 Use Tailwind `focus-visible:ring-2 focus-visible:ring-ev-accent focus-visible:outline-none` on all interactive elements. `focus-visible` fires only on keyboard focus, not mouse — this is the correct pattern (do NOT use `focus:` alone).
 
 #### Elements to audit:
+
 - `LanguageSwitcher` buttons
 - All CTA `<a>` links in `NextStepsSection`
 - `<button>` in `ProgressiveDisclosure` (toggle)
@@ -80,13 +82,15 @@ Use Tailwind `focus-visible:ring-2 focus-visible:ring-ev-accent focus-visible:ou
 - Any other buttons added throughout the app
 
 #### Pattern to add to interactive elements:
+
 ```tsx
-className="... focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent"
+className = '... focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent'
 ```
 
 ### Tab Order Verification
 
 The natural DOM order should follow the visual reading order:
+
 1. Skip link (before header)
 2. Navigation links in `StickyHeader`
 3. Language switcher in `StickyHeader`
@@ -100,6 +104,7 @@ Ensure NO `tabindex` manipulation is needed — the DOM order should be correct 
 ### prefers-reduced-motion End-to-End Check
 
 `SavingsCounter` already handles `prefers-reduced-motion` per Story 5.2. Verify:
+
 1. `window.matchMedia('(prefers-reduced-motion: reduce)').matches` returns `true` in browser devtools when forced
 2. `SavingsCounter` shows final value immediately (no count-up)
 3. Tailwind `transition-*` classes: Tailwind v4 respects the `@media (prefers-reduced-motion: reduce)` at the framework level for `transition-*` utilities — no additional work needed
@@ -113,6 +118,7 @@ Only add custom CSS if the Tailwind utilities are insufficient. The `sr-only` an
 ### Project Structure Notes
 
 Files modified:
+
 - `src/App.tsx` — add skip link as first element
 - `src/index.css` — add `.sr-only` only if Tailwind's built-in is insufficient
 - `src/components/LanguageSwitcher.tsx` — add focus-visible ring to buttons
@@ -130,6 +136,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

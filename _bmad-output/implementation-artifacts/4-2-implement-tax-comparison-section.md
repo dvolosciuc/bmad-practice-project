@@ -40,13 +40,15 @@ import ProgressiveDisclosure from './ProgressiveDisclosure'
 
 interface TaxSectionProps {
   vehicleWeightKg: number
-  roadTaxAmount: number  // MDL/year — same for EV and ICE in Moldova
+  roadTaxAmount: number // MDL/year — same for EV and ICE in Moldova
 }
 
 export default function TaxSection({ vehicleWeightKg, roadTaxAmount }: TaxSectionProps) {
   const { t } = useTranslation()
   const formatted = new Intl.NumberFormat('ro-MD', {
-    style: 'currency', currency: 'MDL', maximumFractionDigits: 0
+    style: 'currency',
+    currency: 'MDL',
+    maximumFractionDigits: 0,
   }).format(roadTaxAmount)
 
   return (
@@ -71,9 +73,7 @@ export default function TaxSection({ vehicleWeightKg, roadTaxAmount }: TaxSectio
           </div>
         </div>
 
-        <p className="text-sm text-ev-muted mb-4">
-          {t('tax.equalNote', { weight: vehicleWeightKg })}
-        </p>
+        <p className="text-sm text-ev-muted mb-4">{t('tax.equalNote', { weight: vehicleWeightKg })}</p>
 
         <ProgressiveDisclosure summary={t('tax.masaQuestion')}>
           <p className="mb-2">{t('tax.masaExplainer')}</p>
@@ -95,6 +95,7 @@ In Moldova, the road tax (taxa pentru folosirea drumurilor) is calculated identi
 ### Masa vs Masa Proprie Distinction
 
 "Masa totală autorizată" ≠ "masa proprie" (unladen/curb weight):
+
 - **Masa proprie** = empty vehicle weight (what's printed on car body specs)
 - **Masa totală autorizată** = maximum permissible loaded mass (what's on the talon/registration certificate)
 
@@ -128,9 +129,11 @@ Replace the tax placeholder section in `App.tsx` with `<TaxSection />`. Remove t
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/TaxSection.tsx`
 
 Files modified:
+
 - `src/App.tsx` — replace tax placeholder with `<TaxSection />`
 - `src/locales/ro.json` — add `tax.*` keys
 - `src/locales/en.json` — add `tax.*` keys
@@ -146,6 +149,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

@@ -32,13 +32,13 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 
 ### Critical Non-Functional Requirements
 
-| NFR | Target |
-|---|---|
-| First Contentful Paint (4G mobile) | < 1.5s |
-| Time to Interactive | < 2s |
-| Total JS bundle (gzipped) | < 150KB |
-| ANRE fetch timeout | 3s — fallback activates silently |
-| Deployment | Fully static — zero server-side dependencies |
+| NFR                                | Target                                       |
+| ---------------------------------- | -------------------------------------------- |
+| First Contentful Paint (4G mobile) | < 1.5s                                       |
+| Time to Interactive                | < 2s                                         |
+| Total JS bundle (gzipped)          | < 150KB                                      |
+| ANRE fetch timeout                 | 3s — fallback activates silently             |
+| Deployment                         | Fully static — zero server-side dependencies |
 
 ### Unique Technical Challenges
 
@@ -70,6 +70,7 @@ npm install
 ```
 
 **Rationale:**
+
 - The PRD specifies Vite + React explicitly
 - `react-ts` template provides TypeScript out of the box — type safety on operator JSON shapes and i18n keys
 - Zero framework overhead (no Next.js SSR, no routing): output is a pure static `dist/` folder
@@ -79,15 +80,15 @@ npm install
 
 **Architectural Decisions Provided by Starter:**
 
-| Area | Decision |
-|---|---|
-| Language | TypeScript (strict mode) |
-| Build tool | Vite (Rolldown bundler) |
-| Dev server | Vite HMR |
-| JSX | React 19+ |
+| Area        | Decision                      |
+| ----------- | ----------------------------- |
+| Language    | TypeScript (strict mode)      |
+| Build tool  | Vite (Rolldown bundler)       |
+| Dev server  | Vite HMR                      |
+| JSX         | React 19+                     |
 | Entry point | `index.html` → `src/main.tsx` |
-| Output | Static `dist/` folder |
-| Scripts | `dev` · `build` · `preview` |
+| Output      | Static `dist/` folder         |
+| Scripts     | `dev` · `build` · `preview`   |
 
 **Additional dependencies to install post-scaffold:**
 
@@ -165,16 +166,16 @@ src/
 
 ### Naming Conventions
 
-| Category | Convention | Example |
-|---|---|---|
-| Component files | PascalCase `.tsx` | `LossHeadline.tsx`, `OperatorCard.tsx` |
-| Utility / lib files | camelCase `.ts` | `calculations.ts`, `anreFetch.ts` |
-| Styling | Tailwind classes only — no CSS modules, no `.css` files | `className="text-ev-accent font-bold"` |
-| i18n keys | `section.element` dot notation, camelCase | `hero.lossLabel`, `charging.lastVerified` |
-| JSON data keys | camelCase | `lastVerified`, `acFromMDL`, `dcFromMDL` |
-| Props interfaces | `ComponentNameProps` suffix | `OperatorCardProps`, `SliderInputProps` |
-| Event handlers | `handle` prefix | `handleKmChange`, `handleFuelTypeChange` |
-| Pure functions | verb + noun | `calculateMonthlySavings`, `getRoadTax` |
+| Category            | Convention                                              | Example                                   |
+| ------------------- | ------------------------------------------------------- | ----------------------------------------- |
+| Component files     | PascalCase `.tsx`                                       | `LossHeadline.tsx`, `OperatorCard.tsx`    |
+| Utility / lib files | camelCase `.ts`                                         | `calculations.ts`, `anreFetch.ts`         |
+| Styling             | Tailwind classes only — no CSS modules, no `.css` files | `className="text-ev-accent font-bold"`    |
+| i18n keys           | `section.element` dot notation, camelCase               | `hero.lossLabel`, `charging.lastVerified` |
+| JSON data keys      | camelCase                                               | `lastVerified`, `acFromMDL`, `dcFromMDL`  |
+| Props interfaces    | `ComponentNameProps` suffix                             | `OperatorCardProps`, `SliderInputProps`   |
+| Event handlers      | `handle` prefix                                         | `handleKmChange`, `handleFuelTypeChange`  |
+| Pure functions      | verb + noun                                             | `calculateMonthlySavings`, `getRoadTax`   |
 
 ### Component Patterns
 
@@ -201,9 +202,9 @@ type Region = 'centru_sud' | 'nord'
 type ChargingMode = 'public_ac' | 'public_dc'
 
 interface InputState {
-  kmPerMonth: number        // 300–3000
+  kmPerMonth: number // 300–3000
   fuelType: FuelType
-  vehicleWeightKg: number   // 500–5000
+  vehicleWeightKg: number // 500–5000
   chargingMode: ChargingMode
   region: Region
 }
@@ -277,51 +278,51 @@ moldova-ev-overview/
 
 ### Integration Boundaries
 
-| Boundary | Description |
-|---|---|
-| `App.tsx` → `lib/calculations.ts` | Calls pure functions with `InputState`; receives typed result objects |
-| `App.tsx` → `data/*` | Imports `operators.json`, `anre.json`, `roadTax.ts` at module load |
-| `App.tsx` → section components | Passes `inputs`, `SavingsResult`, `PriceData` as explicit props |
-| `i18n.ts` → `locales/*.json` | Loaded by i18next on init; `useTranslation()` available in any component |
-| `anreFetch.ts` → external | `fetch('https://anre.md/...')` — isolated in one module; unused stub in v1 |
-| `netlify.toml` → Netlify CI | Push to `main` → `npm run build` → `dist/` deployed automatically |
+| Boundary                          | Description                                                                |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `App.tsx` → `lib/calculations.ts` | Calls pure functions with `InputState`; receives typed result objects      |
+| `App.tsx` → `data/*`              | Imports `operators.json`, `anre.json`, `roadTax.ts` at module load         |
+| `App.tsx` → section components    | Passes `inputs`, `SavingsResult`, `PriceData` as explicit props            |
+| `i18n.ts` → `locales/*.json`      | Loaded by i18next on init; `useTranslation()` available in any component   |
+| `anreFetch.ts` → external         | `fetch('https://anre.md/...')` — isolated in one module; unused stub in v1 |
+| `netlify.toml` → Netlify CI       | Push to `main` → `npm run build` → `dist/` deployed automatically          |
 
 ## Architecture Validation
 
 ### Coherence Check
 
-| Check | Result |
-|---|---|
-| Vite + React + TypeScript + Tailwind compatibility | ✅ All well-established, no conflicts |
-| `react-i18next` with React context re-render | ✅ Standard pattern |
-| Pure functions in `calculations.ts` + React state in `App.tsx` | ✅ Clean separation of concerns |
-| Static deploy (Netlify) + Vite SPA (no SSR) | ✅ Perfect fit |
-| `operators.json` bundled + zero backend | ✅ Consistent with static-only constraint |
-| Tailwind design tokens + no CSS modules | ✅ Single styling system, no conflicts |
+| Check                                                          | Result                                    |
+| -------------------------------------------------------------- | ----------------------------------------- |
+| Vite + React + TypeScript + Tailwind compatibility             | ✅ All well-established, no conflicts     |
+| `react-i18next` with React context re-render                   | ✅ Standard pattern                       |
+| Pure functions in `calculations.ts` + React state in `App.tsx` | ✅ Clean separation of concerns           |
+| Static deploy (Netlify) + Vite SPA (no SSR)                    | ✅ Perfect fit                            |
+| `operators.json` bundled + zero backend                        | ✅ Consistent with static-only constraint |
+| Tailwind design tokens + no CSS modules                        | ✅ Single styling system, no conflicts    |
 
 ### Requirements Coverage
 
-| PRD Requirement | Architectural Coverage |
-|---|---|
-| Live ANRE fuel prices | `anreFetch.ts` (v2) / `anre.json` fallback (v1) |
-| Operator tariffs | `data/operators.json` → `OperatorCard.tsx` |
-| Road tax calculation | `data/roadTax.ts` → `calculations.ts` → `TaxSection.tsx` |
-| 4 sliders + live recalculation | `SliderGroup.tsx` → `App.tsx` state → pure calc functions |
-| Loss-aversion headline | `LossHeadline.tsx` with display-scale typography |
-| Animated savings counter | `SavingsCounter.tsx` (IntersectionObserver + rAF) |
-| i18n RO/EN at launch + RU v2 | `i18n.ts` + `locales/*.json` + `LanguageSwitcher.tsx` |
-| Static deploy | Vite `dist/` + `netlify.toml` |
-| Bundle < 150KB | Vite tree-shaking + no heavy UI library |
-| App Store CTAs | `NextStepsSection.tsx` |
-| Data freshness transparency | `AnreFreshnessBanner.tsx` + `lastVerified` in all data files |
+| PRD Requirement                | Architectural Coverage                                       |
+| ------------------------------ | ------------------------------------------------------------ |
+| Live ANRE fuel prices          | `anreFetch.ts` (v2) / `anre.json` fallback (v1)              |
+| Operator tariffs               | `data/operators.json` → `OperatorCard.tsx`                   |
+| Road tax calculation           | `data/roadTax.ts` → `calculations.ts` → `TaxSection.tsx`     |
+| 4 sliders + live recalculation | `SliderGroup.tsx` → `App.tsx` state → pure calc functions    |
+| Loss-aversion headline         | `LossHeadline.tsx` with display-scale typography             |
+| Animated savings counter       | `SavingsCounter.tsx` (IntersectionObserver + rAF)            |
+| i18n RO/EN at launch + RU v2   | `i18n.ts` + `locales/*.json` + `LanguageSwitcher.tsx`        |
+| Static deploy                  | Vite `dist/` + `netlify.toml`                                |
+| Bundle < 150KB                 | Vite tree-shaking + no heavy UI library                      |
+| App Store CTAs                 | `NextStepsSection.tsx`                                       |
+| Data freshness transparency    | `AnreFreshnessBanner.tsx` + `lastVerified` in all data files |
 
 All PRD functional requirements have architectural coverage.
 
 ### Known Gaps (Accepted)
 
-| Gap | Severity | Resolution |
-|---|---|---|
+| Gap                                   | Severity | Resolution                                                                    |
+| ------------------------------------- | -------- | ----------------------------------------------------------------------------- |
 | ANRE live fetch blocked by CORS in v1 | Accepted | Hardcoded fallback always shown in v1; v2 uses GitHub Actions scheduled fetch |
-| No test framework configured | Deferred | Not in PRD scope; Vitest can be added in v2 |
-| `ru.json` empty at launch | Accepted | i18next falls back to Romanian for missing keys |
-| SEO/OG meta static only | Accepted | Static `index.html` tags sufficient for a non-SSR app |
+| No test framework configured          | Deferred | Not in PRD scope; Vitest can be added in v2                                   |
+| `ru.json` empty at launch             | Accepted | i18next falls back to Romanian for missing keys                               |
+| SEO/OG meta static only               | Accepted | Static `index.html` tags sufficient for a non-SSR app                         |

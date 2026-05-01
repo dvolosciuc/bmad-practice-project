@@ -35,6 +35,7 @@ so that savings, road tax, CO₂, and break-even calculations can be verified in
 ### Key Calculation Logic
 
 **Fuel cost per month (ICE):**
+
 ```ts
 function calculateFuelCostPerMonth(
   kmPerMonth: number,
@@ -46,9 +47,11 @@ function calculateFuelCostPerMonth(
   return litresPerMonth * prices[fuelType]
 }
 ```
+
 Default consumption 7L/100km is the app default. The slider in Story 2.5 controls `kmPerMonth` — consumption is fixed at 7L/100km in V1 (not a slider input). [Source: prd.md#V1 Must-Have — "Defaults: 7 L/100km ICE"]
 
 **EV charging cost per month:**
+
 ```ts
 function calculateChargingCostPerMonth(
   kmPerMonth: number,
@@ -58,7 +61,7 @@ function calculateChargingCostPerMonth(
 ): number {
   // evConsumptionkWh100km fixed at 18 kWh/100km in V1
   const kWhPerMonth = (kmPerMonth / 100) * evConsumptionkWh100km
-  const tariff = getEvTariff(chargingMode, region)  // from operators.json / const
+  const tariff = getEvTariff(chargingMode, region) // from operators.json / const
   return kWhPerMonth * tariff
 }
 ```
@@ -67,20 +70,20 @@ EV consumption fixed at 18 kWh/100km. [Source: prd.md#Defaults — "18 kWh/100km
 
 **EVPoint tariffs (hardcode for calculation layer):**
 Rather than importing `operators.json` into `calculations.ts`, define a small inline const for tariff lookup:
+
 ```ts
 const EV_TARIFFS: Record<ChargingMode, Record<Region, number>> = {
-  public_ac: { centru_sud: 7.44, nord: 7.80 },
+  public_ac: { centru_sud: 7.44, nord: 7.8 },
   public_dc: { centru_sud: 9.48, nord: 10.44 },
 }
 ```
+
 These match `operators.json` EVPoint data. [Source: moldova-ev-market-data.json]
 
 **`calculateMonthlySavings`:**
+
 ```ts
-export function calculateMonthlySavings(
-  inputs: InputState,
-  prices: PriceData
-): SavingsResult {
+export function calculateMonthlySavings(inputs: InputState, prices: PriceData): SavingsResult {
   const fuelCost = calculateFuelCostPerMonth(inputs.kmPerMonth, inputs.fuelType, prices)
   const chargingCost = calculateChargingCostPerMonth(inputs.kmPerMonth, inputs.chargingMode, inputs.region)
   const monthly = Math.max(0, fuelCost - chargingCost)
@@ -94,16 +97,17 @@ export function calculateMonthlySavings(
 **EV premium for break-even:** Use a constant `EV_AVERAGE_PREMIUM_MDL = 120000` (approximate premium over a comparable ICE vehicle in Moldova, in MDL). This is a V1 simplification — not user-configurable. [Source: prd.md#FR16 — break-even timeline]
 
 **`getRoadTax`:**
+
 ```ts
 export function getRoadTax(weightKg: number): number {
-  const bracket = roadTaxBrackets.find(b => weightKg >= b.minKg && weightKg <= b.maxKg)
-    ?? roadTaxBrackets[0]  // fallback to minimum bracket
+  const bracket = roadTaxBrackets.find((b) => weightKg >= b.minKg && weightKg <= b.maxKg) ?? roadTaxBrackets[0] // fallback to minimum bracket
   return weightKg * bracket.ratePerKg
 }
 ```
 
 **`calcCO2`:**
 Use IPCC standard: petrol = 2.31 kg CO₂/litre, diesel = 2.68 kg CO₂/litre. EV CO₂ is context-dependent but for this tool, assume zero (Moldova's grid mix is not relevant — the tool is about financial savings, CO₂ is illustrative).
+
 ```ts
 export function calcCO2(kmPerMonth: number, fuelType: FuelType): number {
   const CO2_PER_LITRE: Record<FuelType, number> = {
@@ -113,7 +117,7 @@ export function calcCO2(kmPerMonth: number, fuelType: FuelType): number {
   }
   const litresPerMonth = (kmPerMonth / 100) * 7.0
   const kgCO2PerMonth = litresPerMonth * CO2_PER_LITRE[fuelType]
-  return Math.round(kgCO2PerMonth * 12)  // annual kg
+  return Math.round(kgCO2PerMonth * 12) // annual kg
 }
 ```
 
@@ -135,6 +139,7 @@ export function calcCO2(kmPerMonth: number, fuelType: FuelType): number {
 ### Project Structure Notes
 
 Files created:
+
 - `src/lib/calculations.ts` (new)
 
 No other files modified.
@@ -150,6 +155,9 @@ No other files modified.
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

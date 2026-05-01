@@ -53,9 +53,11 @@ export default function StickyHeader() {
   }, [])
 
   return (
-    <header className={`sticky top-0 z-50 transition-colors duration-300 ${
-      scrolled ? 'bg-ev-surface/90 backdrop-blur-md' : 'bg-transparent'
-    }`}>
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-300 ${
+        scrolled ? 'bg-ev-surface/90 backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-[720px] mx-auto px-6 py-3 flex items-center justify-between">
         <nav className="flex gap-4 text-sm font-medium">
           <a href="#charging" onClick={scrollWithOffset} className="text-ev-muted hover:text-ev-text transition-colors">
@@ -95,14 +97,14 @@ Apply this handler to all four anchor links.
 useEffect(() => {
   const sections = document.querySelectorAll('section[id]')
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) setActiveSection(entry.target.id)
       })
     },
     { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
   )
-  sections.forEach(s => observer.observe(s))
+  sections.forEach((s) => observer.observe(s))
   return () => observer.disconnect()
 }, [])
 ```
@@ -118,6 +120,7 @@ Four short labels ("Încărcare", "Taxe", "Economii", "CO₂") fit in one flex r
 ### i18n Keys for Nav Links
 
 Add these to `ro.json` and `en.json` (and document for Story 6.2):
+
 ```json
 {
   "nav.charging": "Încărcare",
@@ -148,9 +151,11 @@ Add these to `ro.json` and `en.json` (and document for Story 6.2):
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/StickyHeader.tsx` (new)
 
 Files modified:
+
 - `src/App.tsx` — import and render `<StickyHeader />`
 - `src/index.css` — add `scroll-behavior: smooth`
 - `src/locales/ro.json` — add `nav.*` keys
@@ -166,6 +171,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List

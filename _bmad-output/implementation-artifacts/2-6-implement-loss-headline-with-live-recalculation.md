@@ -57,7 +57,7 @@ export default function LossHeadline({ monthlyLoss }: LossHeadlineProps) {
     maximumFractionDigits: 0,
   }).format(Math.max(0, monthlyLoss))
 
-  const isNegligible = monthlyLoss < 50  // threshold for "minimal savings"
+  const isNegligible = monthlyLoss < 50 // threshold for "minimal savings"
 
   return (
     <div aria-live="polite" aria-atomic="true">
@@ -78,23 +78,30 @@ export default function LossHeadline({ monthlyLoss }: LossHeadlineProps) {
 
 ### Display Scale Typography
 
-| Viewport | Size | Tailwind Class |
-|---|---|---|
-| Mobile (default) | 48px | `text-5xl` (48px) |
-| Desktop (lg+) | 68–72px | `lg:text-7xl` (72px) |
-| Weight | 800 | `font-extrabold` |
-| Colour | ev-accent | `text-ev-accent` |
+| Viewport         | Size      | Tailwind Class       |
+| ---------------- | --------- | -------------------- |
+| Mobile (default) | 48px      | `text-5xl` (48px)    |
+| Desktop (lg+)    | 68–72px   | `lg:text-7xl` (72px) |
+| Weight           | 800       | `font-extrabold`     |
+| Colour           | ev-accent | `text-ev-accent`     |
 
 [Source: ux-design-specification.md#Typography System — display scale 56-72px weight 800]
 
 ### Highlight Pulse Animation
 
 Add to `src/index.css`:
+
 ```css
 @keyframes value-highlight {
-  0%   { background-color: transparent; }
-  30%  { background-color: color-mix(in srgb, var(--color-ev-accent) 15%, transparent); }
-  100% { background-color: transparent; }
+  0% {
+    background-color: transparent;
+  }
+  30% {
+    background-color: color-mix(in srgb, var(--color-ev-accent) 15%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 
 .highlight-pulse {
@@ -103,6 +110,7 @@ Add to `src/index.css`:
 ```
 
 Trigger by adding/removing the class when the value prop changes. Use a `useEffect` on `monthlyLoss`:
+
 ```tsx
 const [pulse, setPulse] = useState(false)
 useEffect(() => {
@@ -111,6 +119,7 @@ useEffect(() => {
   return () => clearTimeout(t)
 }, [monthlyLoss])
 ```
+
 Apply `pulse ? 'highlight-pulse' : ''` to the headline wrapper. The same mechanism should be applied to `StatGrid` values in Story 5.1 — document this pattern there.
 
 ### Number Formatting
@@ -152,9 +161,11 @@ HeroSection (id="hero")
 ### Project Structure Notes
 
 Files created:
+
 - `src/components/LossHeadline.tsx`
 
 Files modified:
+
 - `src/App.tsx` — import and render `<LossHeadline />` in Hero section; pass `savingsResult.monthly`
 - `src/index.css` — add `@keyframes value-highlight` and `.highlight-pulse`
 - `src/locales/ro.json` — add `hero.*` keys
@@ -172,6 +183,9 @@ Files modified:
 ## Dev Agent Record
 
 ### Agent Model Used
+
 ### Debug Log References
+
 ### Completion Notes List
+
 ### File List
