@@ -28,11 +28,7 @@ export default function LanguageSwitcher() {
           aria-pressed={current === code}
           className={`
             px-2 py-1 text-sm font-medium rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent
-            ${
-              current === code
-                ? 'bg-ev-accent text-ev-bg'
-                : 'text-ev-muted hover:text-ev-text'
-            }
+            ${current === code ? 'bg-ev-accent text-ev-bg' : 'text-ev-muted hover:text-ev-text'}
           `}
         >
           {label}

@@ -35,6 +35,7 @@ export default function LossHeadline({ monthlyLoss }: LossHeadlineProps) {
           {t('hero.lossPrefix')} {formatted} {t('hero.lossSuffix')}
         </h1>
       )}
+      <p className="text-ev-muted text-sm mt-3 max-w-[520px]">{t('hero.subline')}</p>
     </div>
   )
 }

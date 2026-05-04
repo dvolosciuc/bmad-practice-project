@@ -8,11 +8,11 @@ export interface RoadTaxBracket {
 // Basis: masa totală autorizată (maximum authorised mass), MDL per kg annually
 // Verified: contabilsef.md/taxele-rutiere-2 (2026 column)
 export const evRoadTaxBrackets: RoadTaxBracket[] = [
-  { minKg: 1, maxKg: 1500, ratePerKg: 0.60 },
-  { minKg: 1501, maxKg: 2500, ratePerKg: 0.90 },
-  { minKg: 2501, maxKg: 3500, ratePerKg: 1.20 },
-  { minKg: 3501, maxKg: 4500, ratePerKg: 1.50 },
-  { minKg: 4501, maxKg: Infinity, ratePerKg: 1.50 },
+  { minKg: 1, maxKg: 1500, ratePerKg: 0.6 },
+  { minKg: 1501, maxKg: 2500, ratePerKg: 0.9 },
+  { minKg: 2501, maxKg: 3500, ratePerKg: 1.2 },
+  { minKg: 3501, maxKg: 4500, ratePerKg: 1.5 },
+  { minKg: 4501, maxKg: Infinity, ratePerKg: 1.5 },
 ]
 
 /** @deprecated Use evRoadTaxBrackets directly */
@@ -29,9 +29,9 @@ export interface IceRoadTaxBracket {
 // No differentiation by fuel type (benzina/motorina/gpl) or production year in current code
 // Verified: contabilsef.md/taxele-rutiere-2 (2022–2026 columns, unchanged)
 export const iceRoadTaxBrackets: IceRoadTaxBracket[] = [
-  { minCm3: 1, maxCm3: 2000, ratePerCm3: 0.60 },
-  { minCm3: 2001, maxCm3: 3000, ratePerCm3: 0.90 },
-  { minCm3: 3001, maxCm3: 4000, ratePerCm3: 1.20 },
-  { minCm3: 4001, maxCm3: 5000, ratePerCm3: 1.50 },
-  { minCm3: 5001, maxCm3: Infinity, ratePerCm3: 1.80 },
+  { minCm3: 1, maxCm3: 2000, ratePerCm3: 0.6 },
+  { minCm3: 2001, maxCm3: 3000, ratePerCm3: 0.9 },
+  { minCm3: 3001, maxCm3: 4000, ratePerCm3: 1.2 },
+  { minCm3: 4001, maxCm3: 5000, ratePerCm3: 1.5 },
+  { minCm3: 5001, maxCm3: Infinity, ratePerCm3: 1.8 },
 ]

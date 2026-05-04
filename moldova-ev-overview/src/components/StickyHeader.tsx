@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
 
 const NAV_LINKS = [
-  { key: 'nav.charging', href: '#charging' },
-  { key: 'nav.tax', href: '#tax' },
   { key: 'nav.savings', href: '#savings' },
   { key: 'nav.co2', href: '#co2' },
+  { key: 'nav.tax', href: '#tax' },
+  { key: 'nav.charging', href: '#charging' },
 ]
 
 function scrollWithOffset(e: React.MouseEvent<HTMLAnchorElement>) {

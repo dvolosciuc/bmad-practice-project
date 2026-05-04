@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import type { SavingsResult } from '../lib/types'
 import StatBox from './StatBox'
+import { useInView } from '../lib/useInView'
 
 interface StatGridProps {
   savingsResult: SavingsResult
@@ -8,11 +9,11 @@ interface StatGridProps {
 
 export default function StatGrid({ savingsResult }: StatGridProps) {
   const { t } = useTranslation()
+  const [ref] = useInView()
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div ref={ref as React.RefObject<HTMLDivElement>} className="stagger-enter grid grid-cols-2 gap-4">
       <StatBox value={savingsResult.monthly} label={t('savings.monthly')} period={t('savings.perMonth')} />
       <StatBox value={savingsResult.annual} label={t('savings.annual')} period={t('savings.perYear')} />
-      <StatBox value={savingsResult.fiveYear} label={t('savings.fiveYear')} period={t('savings.inFiveYears')} />
     </div>
   )
 }

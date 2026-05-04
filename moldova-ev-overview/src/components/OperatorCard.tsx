@@ -4,13 +4,20 @@ import type { OperatorData } from '../lib/types'
 function FullCard({ operator }: { operator: OperatorData }) {
   const { t } = useTranslation()
   return (
-    <div className="bg-ev-surface rounded-lg p-6">
+    <div className="bg-ev-surface-2 rounded-xl p-6 border border-transparent border-l-2 border-l-ev-accent hover:border-ev-accent/30 transition-colors">
       <h3 className="text-2xl font-semibold text-ev-text mb-4">
         {operator.appUrl ? (
-          <a href={operator.appUrl} target="_blank" rel="noopener noreferrer" className="text-ev-accent underline underline-offset-2 hover:opacity-80 transition-opacity">
+          <a
+            href={operator.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ev-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >
             {operator.name} ↗
           </a>
-        ) : operator.name}
+        ) : (
+          operator.name
+        )}
       </h3>
       <table className="w-full text-sm mb-4">
         {(() => {
@@ -69,15 +76,22 @@ function FullCard({ operator }: { operator: OperatorData }) {
 function PlaceholderCard({ operator }: { operator: OperatorData }) {
   const { t } = useTranslation()
   return (
-    <div className="bg-ev-surface rounded-lg p-6">
+    <div className="bg-ev-surface-2 rounded-xl p-6 border border-ev-surface-2 hover:border-ev-accent/30 transition-colors">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h3 className="text-lg font-semibold text-ev-text">
             {operator.appUrl ? (
-              <a href={operator.appUrl} target="_blank" rel="noopener noreferrer" className="text-ev-accent underline underline-offset-2 hover:opacity-80 transition-opacity">
+              <a
+                href={operator.appUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ev-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+              >
                 {operator.name} ↗
               </a>
-            ) : operator.name}
+            ) : (
+              operator.name
+            )}
           </h3>
           <p className="text-[13px] text-ev-muted mt-1">{t('charging.tariffNotListed')}</p>
           <p className="text-[13px] text-ev-muted">
@@ -86,14 +100,22 @@ function PlaceholderCard({ operator }: { operator: OperatorData }) {
         </div>
         <div className="flex gap-2 flex-wrap">
           {operator.appStoreUrl && (
-            <a href={operator.appStoreUrl} target="_blank" rel="noopener noreferrer"
-              className="shrink-0 px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center">
+            <a
+              href={operator.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center"
+            >
               {t('nextSteps.ios')}
             </a>
           )}
           {operator.playStoreUrl && (
-            <a href={operator.playStoreUrl} target="_blank" rel="noopener noreferrer"
-              className="shrink-0 px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center">
+            <a
+              href={operator.playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 px-4 py-2 bg-ev-accent text-ev-bg rounded-lg text-sm font-medium min-h-[44px] flex items-center"
+            >
               {t('nextSteps.android')}
             </a>
           )}

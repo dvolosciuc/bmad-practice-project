@@ -28,7 +28,8 @@ export const getRoadTax = getEvRoadTax
 
 /** ICE road tax — based on engine displacement (cm³), Fiscal Code Title IX */
 export function getIceRoadTax(engineCm3: number): number {
-  const bracket = iceRoadTaxBrackets.find((b) => engineCm3 >= b.minCm3 && engineCm3 <= b.maxCm3) ?? iceRoadTaxBrackets[0]
+  const bracket =
+    iceRoadTaxBrackets.find((b) => engineCm3 >= b.minCm3 && engineCm3 <= b.maxCm3) ?? iceRoadTaxBrackets[0]
   return engineCm3 * bracket.ratePerCm3
 }
 

@@ -15,11 +15,14 @@ import TaxSection from './components/TaxSection'
 import SavingsSection from './components/SavingsSection'
 import CO2Section from './components/CO2Section'
 import NextStepsSection from './components/NextStepsSection'
+import HeroOrbs from './components/HeroOrbs'
+import { useInView } from './lib/useInView'
 
 function CommunityBanner() {
   const { t } = useTranslation()
+  const [ref] = useInView()
   return (
-    <section className="py-10 md:py-14 lg:py-16 bg-ev-surface">
+    <section ref={ref as React.RefObject<HTMLElement>} className="section-enter py-10 md:py-14 lg:py-16 bg-ev-surface">
       <div className="max-w-[720px] mx-auto px-6 text-center">
         <p className="text-6xl font-bold text-ev-accent mb-2">{t('community.stat')}</p>
         <p className="text-lg font-semibold text-ev-text mb-3">{t('community.statLabel')}</p>
@@ -81,18 +84,25 @@ export default function App() {
       <StickyHeader />
       <main id="main-content">
         {/* StickyHeader — Story 2.4 */}
-        <section id="hero" className="pt-12 pb-6 md:py-14 lg:py-16">
+        <section id="hero" className="hero-glow relative pt-12 pb-6 md:py-14 lg:py-16">
+          <HeroOrbs />
           <div className="max-w-[720px] mx-auto px-6 flex flex-col gap-8">
             <LossHeadline monthlyLoss={savingsResult.monthly} />
             <AnreFreshnessBanner status={priceData.status} lastVerified={priceData.lastVerified} />
             <SliderGroup inputs={inputs} onChange={handleInputChange} />
           </div>
         </section>
-        <ChargingSection operators={operators} />
-        <TaxSection vehicleWeightKg={inputs.vehicleWeightKg} roadTaxEV={roadTaxEV} engineCm3={inputs.engineCm3} roadTaxICE={roadTaxICE} onChange={handleInputChange} />
         <SavingsSection savingsResult={savingsResult} />
         <CO2Section co2AnnualKg={co2Annual} />
         <CommunityBanner />
+        <TaxSection
+          vehicleWeightKg={inputs.vehicleWeightKg}
+          roadTaxEV={roadTaxEV}
+          engineCm3={inputs.engineCm3}
+          roadTaxICE={roadTaxICE}
+          onChange={handleInputChange}
+        />
+        <ChargingSection operators={operators} />
         <NextStepsSection operators={operators} />
       </main>
     </div>
