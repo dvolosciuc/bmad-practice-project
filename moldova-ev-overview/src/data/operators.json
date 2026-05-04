@@ -5,10 +5,8 @@
     "variant": "full",
     "lastVerified": "2026-03-31",
     "tariffs": [
-      { "region": "centru_sud_standard", "acFromMDL": 3.56 },
-      { "region": "centru_sud_night", "acFromMDL": 2.94 },
-      { "region": "nord_standard", "acFromMDL": 3.95 },
-      { "region": "nord_night", "acFromMDL": 3.43 }
+      { "region": "centru_sud", "acFromMDL": 3.56, "acNightFromMDL": 2.94 },
+      { "region": "nord", "acFromMDL": 3.95, "acNightFromMDL": 3.43 }
     ],
     "appUrl": "https://anre.md/energie-electrica-3-290"
   },

@@ -21,9 +21,7 @@ export default function AnreFreshnessBanner({ status, lastVerified }: AnreFreshn
         className={`w-2 h-2 rounded-full flex-shrink-0 ${isLive ? 'bg-ev-accent' : 'bg-ev-warning'}`}
         aria-hidden="true"
       />
-      <p className="text-[13px] text-ev-muted">
-        {t('anre.live', { time: displayDate })}
-      </p>
+      <p className="text-[13px] text-ev-muted">{t('anre.live', { time: displayDate })}</p>
     </div>
   )
 }

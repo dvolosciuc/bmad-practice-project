@@ -15,7 +15,6 @@ export interface SavingsResult {
   monthly: number
   annual: number
   fiveYear: number
-  breakEvenMonths: number | null // null when savings are negligible
 }
 
 export interface PriceData {
@@ -27,8 +26,9 @@ export interface PriceData {
 }
 
 export interface OperatorTariff {
-  region: string // display key: centru_sud | nord | nationwide | standard | night
+  region: string // display key: centru_sud | nord | nationwide
   acFromMDL: number // MDL/kWh
+  acNightFromMDL?: number // MDL/kWh — optional night/off-peak tariff
   dcFromMDL?: number // MDL/kWh — optional (some operators AC only)
 }
 

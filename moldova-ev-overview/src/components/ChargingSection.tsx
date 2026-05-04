@@ -15,7 +15,7 @@ export default function ChargingSection({ operators }: ChargingSectionProps) {
     <section
       id="charging"
       ref={ref as React.RefObject<HTMLElement>}
-      className="section-enter py-10 md:py-14 lg:py-16 bg-ev-surface"
+      className="section-enter py-10 md:py-14 lg:py-16 bg-ev-bg"
     >
       <div className="max-w-[720px] mx-auto px-6">
         <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">

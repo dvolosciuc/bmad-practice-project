@@ -237,4 +237,86 @@ html {
   .stagger-enter > *, .stagger-enter.in-view > * { opacity: 1; transform: none; transition: none; }
   .glow-pulse { animation: none; }
   .btn-shimmer { animation: none; }
+  .grid-scan::before { animation: none; }
 }
+
+/* ── Animated background grid + scan line ───────────────── */
+@keyframes grid-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.grid-scan {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.grid-scan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(45, 212, 191, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: grid-fade-in 2s ease-out forwards;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* ── Operator card glassmorphism ─────────────────────────── */
+.operator-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 40, 54, 0.95) 0%,
+    rgba(26, 29, 39, 0.9) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 212, 191, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.operator-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(45, 212, 191, 0.4),
+    transparent
+  );
+}
+.operator-card:hover {
+  border-color: rgba(45, 212, 191, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(45, 212, 191, 0.1);
+}
+
+/* ── Price pill badges ───────────────────────────────────── */
+.price-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  min-width: 80px;
+  gap: 2px;
+}
+.price-pill-dc {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+.price-pill-neutral {
+  background: rgba(148, 163, 184, 0.07);
+  border-color: rgba(148, 163, 184, 0.15);
+}
+

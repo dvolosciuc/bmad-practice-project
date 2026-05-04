@@ -17,6 +17,7 @@ import CO2Section from './components/CO2Section'
 import NextStepsSection from './components/NextStepsSection'
 import HeroOrbs from './components/HeroOrbs'
 import MapSection from './components/MapSection'
+import GridScan from './components/GridScan'
 import { useInView } from './lib/useInView'
 
 function CommunityBanner() {
@@ -76,6 +77,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-ev-bg text-ev-text font-sans">
+      <GridScan />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-ev-accent focus:text-ev-bg focus:rounded-lg focus:ring-2 focus:ring-ev-bg font-medium"

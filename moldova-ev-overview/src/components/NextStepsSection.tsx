@@ -14,12 +14,9 @@ export default function NextStepsSection({ operators }: NextStepsSectionProps) {
     <section
       id="next-steps"
       ref={ref as React.RefObject<HTMLElement>}
-      className="section-enter py-10 md:py-14 lg:py-16"
+      className="section-enter py-10 md:py-14 lg:py-16 bg-ev-surface"
     >
       <div className="max-w-[720px] mx-auto px-6">
-        <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">
-          {t('nextSteps.sectionLabel')}
-        </p>
         <h2 className="text-4xl font-bold text-ev-text mb-3">{t('nextSteps.payoffTitle')}</h2>
         <p className="text-ev-muted mb-8">{t('nextSteps.payoffBody')}</p>
         <div ref={listRef as React.RefObject<HTMLDivElement>} className="stagger-enter flex flex-col gap-4">

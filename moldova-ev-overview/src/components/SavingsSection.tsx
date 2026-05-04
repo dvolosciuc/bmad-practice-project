@@ -35,20 +35,12 @@ export default function SavingsSection({ savingsResult }: SavingsSectionProps) {
           <p className="relative text-6xl sm:text-7xl lg:text-8xl font-extrabold text-ev-accent leading-none [font-variant-numeric:tabular-nums]">
             {fmtMDL(savingsResult.fiveYear)}
           </p>
-          <p className="relative text-ev-muted text-sm mt-3">{t('savings.inFiveYears')}</p>
         </div>
 
         <SavingsCounter targetValue={savingsResult.monthly} />
 
         <StatGrid savingsResult={savingsResult} />
 
-        {savingsResult.breakEvenMonths !== null ? (
-          <p className="text-sm text-ev-muted mt-4">
-            {t('savings.breakEven', { months: savingsResult.breakEvenMonths })}
-          </p>
-        ) : (
-          <p className="text-sm text-ev-muted mt-4">{t('savings.negligible')}</p>
-        )}
       </div>
     </section>
   )

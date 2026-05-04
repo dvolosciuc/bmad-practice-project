@@ -3,12 +3,11 @@ import { evRoadTaxBrackets, iceRoadTaxBrackets } from '../data/roadTax'
 
 const ICE_CONSUMPTION_L_100KM = 7.0
 const EV_CONSUMPTION_KWH_100KM = 18.0
-const EV_AVERAGE_PREMIUM_MDL = 120000
 
 const EV_TARIFFS: Record<ChargingMode, Record<Region, number>> = {
-  home_ac: { centru_sud: 3.56, nord: 3.56 },
-  public_ac: { centru_sud: 7.44, nord: 7.8 },
-  public_dc: { centru_sud: 9.48, nord: 10.44 },
+  home_ac: { centru_sud: 3.56, nord: 3.56, nationwide: 3.56 },
+  public_ac: { centru_sud: 7.44, nord: 7.8, nationwide: 7.44 },
+  public_dc: { centru_sud: 9.48, nord: 10.44, nationwide: 9.48 },
 }
 
 const CO2_PER_LITRE: Record<FuelType, number> = {
@@ -62,8 +61,7 @@ export function calculateMonthlySavings(inputs: InputState, prices: PriceData): 
   const monthly = Math.max(0, fuelCost - chargingCost)
   const annual = monthly * 12
   const fiveYear = monthly * 60
-  const breakEvenMonths = calcBreakEven(monthly, EV_AVERAGE_PREMIUM_MDL)
-  return { monthly, annual, fiveYear, breakEvenMonths }
+  return { monthly, annual, fiveYear }
 }
 
 export function calcCO2(kmPerMonth: number, fuelType: FuelType): number {

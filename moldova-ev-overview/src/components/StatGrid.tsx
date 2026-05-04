@@ -12,8 +12,8 @@ export default function StatGrid({ savingsResult }: StatGridProps) {
   const [ref] = useInView()
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} className="stagger-enter grid grid-cols-2 gap-4">
-      <StatBox value={savingsResult.monthly} label={t('savings.monthly')} period={t('savings.perMonth')} />
-      <StatBox value={savingsResult.annual} label={t('savings.annual')} period={t('savings.perYear')} />
+      <StatBox value={savingsResult.monthly} label={t('savings.monthly')} />
+      <StatBox value={savingsResult.annual} label={t('savings.annual')} />
     </div>
   )
 }

@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react'
 interface StatBoxProps {
   value: number
   label: string
-  period: string
 }
 
-export default function StatBox({ value, label, period }: StatBoxProps) {
+export default function StatBox({ value, label }: StatBoxProps) {
   const [pulse, setPulse] = useState(false)
 
   useEffect(() => {
@@ -27,7 +26,6 @@ export default function StatBox({ value, label, period }: StatBoxProps) {
     >
       <p className="text-[13px] text-ev-muted uppercase tracking-wider mb-1">{label}</p>
       <p className="text-3xl font-bold text-ev-accent [font-variant-numeric:tabular-nums] leading-tight">{formatted}</p>
-      <p className="text-[13px] text-ev-muted mt-1">{period}</p>
     </div>
   )
 }
