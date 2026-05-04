@@ -1,6 +1,7 @@
 {
   "app.title": "Moldova EV Overview",
   "nav.charging": "Încărcare",
+  "nav.map": "Hartă",
   "nav.tax": "Taxe",
   "nav.savings": "Economii",
   "nav.co2": "CO₂",
@@ -43,6 +44,10 @@
   "co2.treesSubline": "echivalent plantați pe an",
   "co2.kgEmissions": "Mașina ta emite ~{{kg}} kg CO₂/an — un EV ar produce zero emisii directe.",
   "co2.negligible": "Impact CO₂ minim la acest profil",
+  "map.sectionLabel": "Stații de încărcare",
+  "map.sectionTitle": "Unde poți încărca în Moldova",
+  "map.subline": "Peste 300 de stații publice de încărcare în Republica Moldova.",
+  "map.plugshare": "Vezi toate pe PlugShare",
   "nextSteps.sectionLabel": "Ce urmează",
   "nextSteps.sectionTitle": "Începe tranziția azi",
   "nextSteps.payoffTitle": "Ai văzut cifrele. Fă pasul.",

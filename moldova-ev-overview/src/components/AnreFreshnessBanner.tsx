@@ -22,7 +22,7 @@ export default function AnreFreshnessBanner({ status, lastVerified }: AnreFreshn
         aria-hidden="true"
       />
       <p className="text-[13px] text-ev-muted">
-        {isLive ? t('anre.live', { time: displayDate }) : t('anre.fallback', { date: displayDate })}
+        {t('anre.live', { time: displayDate })}
       </p>
     </div>
   )

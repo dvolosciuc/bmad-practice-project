@@ -22,10 +22,7 @@ export default function NextStepsSection({ operators }: NextStepsSectionProps) {
         </p>
         <h2 className="text-4xl font-bold text-ev-text mb-3">{t('nextSteps.payoffTitle')}</h2>
         <p className="text-ev-muted mb-8">{t('nextSteps.payoffBody')}</p>
-        <div
-          ref={listRef as React.RefObject<HTMLDivElement>}
-          className="stagger-enter flex flex-col gap-4"
-        >
+        <div ref={listRef as React.RefObject<HTMLDivElement>} className="stagger-enter flex flex-col gap-4">
           {operators.map((op) => (
             <div key={op.id} className="bg-ev-surface rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-3">
               <span className="font-semibold text-ev-text min-w-[140px]">{op.name}</span>

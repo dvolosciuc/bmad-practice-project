@@ -22,7 +22,8 @@ export default function TaxSection({ vehicleWeightKg, roadTaxEV, engineCm3, road
     <section
       id="tax"
       ref={ref as React.RefObject<HTMLElement>}
-      className="section-enter py-10 md:py-14 lg:py-16 bg-ev-surface">
+      className="section-enter py-10 md:py-14 lg:py-16 bg-ev-surface"
+    >
       <div className="max-w-[720px] mx-auto px-6">
         <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">
           {t('tax.sectionLabel')}
@@ -59,10 +60,14 @@ export default function TaxSection({ vehicleWeightKg, roadTaxEV, engineCm3, road
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-ev-surface-2 rounded-xl p-6 text-center border border-ev-accent/30 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-ev-accent/10 via-transparent to-transparent pointer-events-none" />
-            <p className="relative text-[11px] uppercase tracking-widest text-ev-accent font-semibold mb-2">{t('tax.ev')}</p>
+            <p className="relative text-[11px] uppercase tracking-widest text-ev-accent font-semibold mb-2">
+              {t('tax.ev')}
+            </p>
             <p className="relative text-3xl font-bold text-ev-accent">{fmt(roadTaxEV)}</p>
             <p className="relative text-[13px] text-ev-muted mt-1">{t('tax.perYear')}</p>
-            <p className="relative text-[11px] text-ev-muted mt-2 opacity-70">{t('tax.evBasis', { weight: vehicleWeightKg })}</p>
+            <p className="relative text-[11px] text-ev-muted mt-2 opacity-70">
+              {t('tax.evBasis', { weight: vehicleWeightKg })}
+            </p>
           </div>
           <div className="bg-ev-surface-2 rounded-xl p-6 text-center border border-ev-surface-2">
             <p className="text-[11px] uppercase tracking-widest text-ev-muted font-semibold mb-2">{t('tax.ice')}</p>

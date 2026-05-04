@@ -22,10 +22,7 @@ export default function ChargingSection({ operators }: ChargingSectionProps) {
           {t('charging.sectionLabel')}
         </p>
         <h2 className="text-4xl font-bold text-ev-text mb-8">{t('charging.sectionTitle')}</h2>
-        <div
-          ref={listRef as React.RefObject<HTMLDivElement>}
-          className="stagger-enter flex flex-col gap-4"
-        >
+        <div ref={listRef as React.RefObject<HTMLDivElement>} className="stagger-enter flex flex-col gap-4">
           {operators.map((operator) => (
             <OperatorCard key={operator.id} operator={operator} />
           ))}

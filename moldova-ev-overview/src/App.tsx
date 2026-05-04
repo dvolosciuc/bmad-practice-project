@@ -16,6 +16,7 @@ import SavingsSection from './components/SavingsSection'
 import CO2Section from './components/CO2Section'
 import NextStepsSection from './components/NextStepsSection'
 import HeroOrbs from './components/HeroOrbs'
+import MapSection from './components/MapSection'
 import { useInView } from './lib/useInView'
 
 function CommunityBanner() {
@@ -95,6 +96,7 @@ export default function App() {
         <SavingsSection savingsResult={savingsResult} />
         <CO2Section co2AnnualKg={co2Annual} />
         <CommunityBanner />
+        <MapSection />
         <TaxSection
           vehicleWeightKg={inputs.vehicleWeightKg}
           roadTaxEV={roadTaxEV}

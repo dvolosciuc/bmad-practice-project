@@ -5,6 +5,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 const NAV_LINKS = [
   { key: 'nav.savings', href: '#savings' },
   { key: 'nav.co2', href: '#co2' },
+  { key: 'nav.map', href: '#map' },
   { key: 'nav.tax', href: '#tax' },
   { key: 'nav.charging', href: '#charging' },
 ]

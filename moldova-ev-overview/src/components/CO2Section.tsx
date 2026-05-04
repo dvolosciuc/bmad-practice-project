@@ -13,11 +13,7 @@ export default function CO2Section({ co2AnnualKg }: CO2SectionProps) {
   const animatedTrees = useCountUp(trees, inView, 1600)
 
   return (
-    <section
-      id="co2"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="section-enter py-10 md:py-14 lg:py-16"
-    >
+    <section id="co2" ref={ref as React.RefObject<HTMLElement>} className="section-enter py-10 md:py-14 lg:py-16">
       <div className="max-w-[720px] mx-auto px-6">
         <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">
           {t('co2.sectionLabel')}

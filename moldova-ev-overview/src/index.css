@@ -209,6 +209,27 @@ html {
   animation-duration: 1.4s;
 }
 
+/* ── Leaflet map overrides ───────────────────────────────── */
+.leaflet-container {
+  font-family: var(--font-sans);
+}
+.leaflet-control-attribution {
+  background: rgba(15, 17, 23, 0.8) !important;
+  color: var(--color-ev-muted) !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: var(--color-ev-accent) !important;
+}
+.leaflet-control-zoom a {
+  background: var(--color-ev-surface-2) !important;
+  color: var(--color-ev-text) !important;
+  border-color: var(--color-ev-surface-2) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: var(--color-ev-surface) !important;
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .orb-a, .orb-b, .orb-c { animation: none; }
