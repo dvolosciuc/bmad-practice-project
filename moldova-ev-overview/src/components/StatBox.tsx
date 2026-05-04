@@ -24,9 +24,7 @@ export default function StatBox({ value, label, period }: StatBoxProps) {
   return (
     <div className={`bg-ev-surface rounded-lg p-6 text-center ${pulse ? 'highlight-pulse' : ''}`}>
       <p className="text-[13px] text-ev-muted uppercase tracking-wider mb-1">{label}</p>
-      <p className="text-3xl font-bold text-ev-accent [font-variant-numeric:tabular-nums] leading-tight">
-        {formatted}
-      </p>
+      <p className="text-3xl font-bold text-ev-accent [font-variant-numeric:tabular-nums] leading-tight">{formatted}</p>
       <p className="text-[13px] text-ev-muted mt-1">{period}</p>
     </div>
   )

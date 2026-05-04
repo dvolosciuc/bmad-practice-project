@@ -1,11 +1,12 @@
 export type FuelType = 'benzina95' | 'motorina' | 'gpl'
-export type Region = 'centru_sud' | 'nord'
-export type ChargingMode = 'public_ac' | 'public_dc'
+export type Region = 'centru_sud' | 'nord' | 'nationwide'
+export type ChargingMode = 'home_ac' | 'public_ac' | 'public_dc'
 
 export interface InputState {
   kmPerMonth: number // 300–3000
   fuelType: FuelType
-  vehicleWeightKg: number // 500–5000
+  vehicleWeightKg: number // 500–5000 — EV road tax basis
+  engineCm3: number // 600–5000 — ICE road tax basis
   chargingMode: ChargingMode
   region: Region
 }
@@ -26,9 +27,9 @@ export interface PriceData {
 }
 
 export interface OperatorTariff {
-  region: Region
+  region: string // display key: centru_sud | nord | nationwide | standard | night
   acFromMDL: number // MDL/kWh
-  dcFromMDL: number // MDL/kWh
+  dcFromMDL?: number // MDL/kWh — optional (some operators AC only)
 }
 
 export interface OperatorData {

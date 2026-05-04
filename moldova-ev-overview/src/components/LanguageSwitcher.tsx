@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 
-const LANGUAGES: { code: string; label: string; disabled: boolean; note?: string }[] = [
-  { code: 'ro', label: 'RO', disabled: false },
-  { code: 'en', label: 'EN', disabled: false },
-  { code: 'ru', label: 'RU', disabled: true, note: '(în curând)' },
+const LANGUAGES: { code: string; label: string }[] = [
+  { code: 'ro', label: 'RO' },
+  { code: 'en', label: 'EN' },
 ]
 
 export default function LanguageSwitcher() {
@@ -22,25 +21,21 @@ export default function LanguageSwitcher() {
       <span aria-live="polite" className="sr-only">
         Language changed to {current}
       </span>
-      {LANGUAGES.map(({ code, label, disabled, note }) => (
+      {LANGUAGES.map(({ code, label }) => (
         <button
           key={code}
-          onClick={() => !disabled && handleChange(code)}
-          disabled={disabled}
+          onClick={() => handleChange(code)}
           aria-pressed={current === code}
           className={`
             px-2 py-1 text-sm font-medium rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent
             ${
               current === code
                 ? 'bg-ev-accent text-ev-bg'
-                : disabled
-                  ? 'text-ev-muted cursor-not-allowed opacity-50'
-                  : 'text-ev-muted hover:text-ev-text'
+                : 'text-ev-muted hover:text-ev-text'
             }
           `}
         >
           {label}
-          {note && <span className="text-xs ml-0.5 text-ev-muted">{note}</span>}
         </button>
       ))}
     </div>

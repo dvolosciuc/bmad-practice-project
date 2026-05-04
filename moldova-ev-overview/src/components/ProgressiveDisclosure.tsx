@@ -10,11 +10,7 @@ export default function ProgressiveDisclosure({ summary, children }: Progressive
   const contentRef = useRef<HTMLDivElement>(null)
 
   return (
-    <details
-      open={open}
-      onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}
-      className="group"
-    >
+    <details open={open} onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)} className="group">
       <summary
         className="flex items-center gap-2 cursor-pointer list-none text-ev-muted text-sm font-medium py-2 hover:text-ev-text transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent rounded"
         onClick={(e) => {
@@ -22,10 +18,7 @@ export default function ProgressiveDisclosure({ summary, children }: Progressive
           setOpen((prev) => !prev)
         }}
       >
-        <span
-          className={`transition-transform duration-200 ${open ? 'rotate-90' : ''}`}
-          aria-hidden="true"
-        >
+        <span className={`transition-transform duration-200 ${open ? 'rotate-90' : ''}`} aria-hidden="true">
           ›
         </span>
         {summary}

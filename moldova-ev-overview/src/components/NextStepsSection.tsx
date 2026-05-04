@@ -1,9 +1,15 @@
 import { useTranslation } from 'react-i18next'
+import type { OperatorData } from '../lib/types'
 
-const EVPOINT_APP_STORE = 'https://apps.apple.com/md/app/evpoint-moldova/id1536107978'
-const EVPOINT_PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.evpoint.md'
+interface NextStepsSectionProps {
+  operators: OperatorData[]
+}
 
-export default function NextStepsSection() {
+const BTN = 'inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm min-h-[40px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ev-bg'
+const BTN_PRIMARY = `${BTN} bg-ev-accent text-ev-bg hover:bg-ev-accent-hover`
+const BTN_OUTLINE = `${BTN} border border-ev-accent text-ev-accent hover:bg-ev-accent/10`
+
+export default function NextStepsSection({ operators }: NextStepsSectionProps) {
   const { t } = useTranslation()
   return (
     <section id="next-steps" className="py-10 md:py-14 lg:py-16">
@@ -12,23 +18,24 @@ export default function NextStepsSection() {
           {t('nextSteps.sectionLabel')}
         </p>
         <h2 className="text-4xl font-bold text-ev-text mb-8">{t('nextSteps.sectionTitle')}</h2>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href={EVPOINT_APP_STORE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center px-6 py-3 bg-ev-accent text-ev-bg rounded-lg font-semibold min-h-[48px] hover:bg-ev-accent-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ev-bg"
-          >
-            {t('nextSteps.appStore')}
-          </a>
-          <a
-            href={EVPOINT_PLAY_STORE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center px-6 py-3 bg-ev-accent text-ev-bg rounded-lg font-semibold min-h-[48px] hover:bg-ev-accent-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ev-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ev-bg"
-          >
-            {t('nextSteps.playStore')}
-          </a>
+        <div className="flex flex-col gap-4">
+          {operators.map((op) => (
+            <div key={op.id} className="bg-ev-surface rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+              <span className="font-semibold text-ev-text min-w-[140px]">{op.name}</span>
+              <div className="flex flex-wrap gap-2">
+                {op.appStoreUrl && (
+                  <a href={op.appStoreUrl} target="_blank" rel="noopener noreferrer" className={BTN_PRIMARY}>
+                    {t('nextSteps.ios')}
+                  </a>
+                )}
+                {op.playStoreUrl && (
+                  <a href={op.playStoreUrl} target="_blank" rel="noopener noreferrer" className={BTN_PRIMARY}>
+                    {t('nextSteps.android')}
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

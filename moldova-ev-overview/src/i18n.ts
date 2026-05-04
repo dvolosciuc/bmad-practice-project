@@ -13,7 +13,7 @@ i18next
       en: { translation: en },
     },
     fallbackLng: 'ro',
-    supportedLngs: ['ro', 'en', 'ru'],
+    supportedLngs: ['ro', 'en'],
     interpolation: {
       escapeValue: false,
     },

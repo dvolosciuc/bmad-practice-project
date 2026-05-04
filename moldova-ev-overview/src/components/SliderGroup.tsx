@@ -18,6 +18,7 @@ export default function SliderGroup({ inputs, onChange }: SliderGroupProps) {
   ]
 
   const chargingOptions: { value: ChargingMode; label: string }[] = [
+    { value: 'home_ac', label: t('slider.homeAC') },
     { value: 'public_ac', label: t('slider.publicAC') },
     { value: 'public_dc', label: t('slider.publicDC') },
   ]
@@ -31,28 +32,16 @@ export default function SliderGroup({ inputs, onChange }: SliderGroupProps) {
         min={300}
         max={3000}
         step={100}
-        unit="km/lună"
+        unit={t('slider.kmUnit')}
         hint={t('slider.kmPerMonthHint')}
         onChange={(v) => onChange('kmPerMonth', v)}
-        ariaValueText={`${inputs.kmPerMonth} km pe lună`}
+        ariaValueText={`${inputs.kmPerMonth} ${t('slider.kmUnit')}`}
       />
       <SegmentedControl
         options={fuelOptions}
         value={inputs.fuelType}
         onChange={(v) => onChange('fuelType', v)}
         label={t('slider.fuelType')}
-      />
-      <SliderInput
-        id="vehicle-weight"
-        label={t('slider.vehicleWeight')}
-        value={inputs.vehicleWeightKg}
-        min={500}
-        max={5000}
-        step={50}
-        unit="kg"
-        hint={t('slider.vehicleWeightHint')}
-        onChange={(v) => onChange('vehicleWeightKg', v)}
-        ariaValueText={`${inputs.vehicleWeightKg} kg`}
       />
       <SegmentedControl
         options={chargingOptions}

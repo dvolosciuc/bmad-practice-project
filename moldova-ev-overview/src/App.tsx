@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { InputState, PriceData } from './lib/types'
-import { calculateMonthlySavings, getRoadTax, calcCO2 } from './lib/calculations'
+import { calculateMonthlySavings, getEvRoadTax, getIceRoadTax, calcCO2 } from './lib/calculations'
 import { fetchAnreData } from './lib/anreFetch'
 import anreFallback from './data/anre.json'
 import operatorsRaw from './data/operators.json'
@@ -15,6 +16,19 @@ import SavingsSection from './components/SavingsSection'
 import CO2Section from './components/CO2Section'
 import NextStepsSection from './components/NextStepsSection'
 
+function CommunityBanner() {
+  const { t } = useTranslation()
+  return (
+    <section className="py-10 md:py-14 lg:py-16 bg-ev-surface">
+      <div className="max-w-[720px] mx-auto px-6 text-center">
+        <p className="text-6xl font-bold text-ev-accent mb-2">{t('community.stat')}</p>
+        <p className="text-lg font-semibold text-ev-text mb-3">{t('community.statLabel')}</p>
+        <p className="text-ev-muted">{t('community.cta')}</p>
+      </div>
+    </section>
+  )
+}
+
 function assertOperators(data: unknown): asserts data is OperatorData[] {
   if (!Array.isArray(data)) throw new Error('operators.json must be an array')
 }
@@ -25,7 +39,8 @@ const DEFAULT_INPUTS: InputState = {
   kmPerMonth: 1200,
   fuelType: 'benzina95',
   vehicleWeightKg: 1400,
-  chargingMode: 'public_ac',
+  engineCm3: 1600,
+  chargingMode: 'home_ac',
   region: 'centru_sud',
 }
 
@@ -51,12 +66,9 @@ export default function App() {
 
   // Derived values computed inline — no useEffect
   const savingsResult = calculateMonthlySavings(inputs, priceData)
-  const roadTaxEV = getRoadTax(inputs.vehicleWeightKg)
-  const roadTaxICE = getRoadTax(inputs.vehicleWeightKg)
+  const roadTaxEV = getEvRoadTax(inputs.vehicleWeightKg)
+  const roadTaxICE = getIceRoadTax(inputs.engineCm3)
   const co2Annual = calcCO2(inputs.kmPerMonth, inputs.fuelType)
-
-  // Suppress unused variable warning until consumed
-  void roadTaxICE
 
   return (
     <div className="min-h-screen bg-ev-bg text-ev-text font-sans">
@@ -68,20 +80,22 @@ export default function App() {
       </a>
       <StickyHeader />
       <main id="main-content">
-      {/* StickyHeader — Story 2.4 */}
-      <section id="hero" className="pt-12 pb-6 md:py-14 lg:py-16">
-        <div className="max-w-[720px] mx-auto px-6 flex flex-col gap-8">
-          <LossHeadline monthlyLoss={savingsResult.monthly} />
-          <AnreFreshnessBanner status={priceData.status} lastVerified={priceData.lastVerified} />
-          <SliderGroup inputs={inputs} onChange={handleInputChange} />
-        </div>
-      </section>
-      <ChargingSection operators={operators} />
-      <TaxSection vehicleWeightKg={inputs.vehicleWeightKg} roadTaxAmount={roadTaxEV} />
-      <SavingsSection savingsResult={savingsResult} />
-      <CO2Section co2AnnualKg={co2Annual} />
-      <NextStepsSection />
+        {/* StickyHeader — Story 2.4 */}
+        <section id="hero" className="pt-12 pb-6 md:py-14 lg:py-16">
+          <div className="max-w-[720px] mx-auto px-6 flex flex-col gap-8">
+            <LossHeadline monthlyLoss={savingsResult.monthly} />
+            <AnreFreshnessBanner status={priceData.status} lastVerified={priceData.lastVerified} />
+            <SliderGroup inputs={inputs} onChange={handleInputChange} />
+          </div>
+        </section>
+        <ChargingSection operators={operators} />
+        <TaxSection vehicleWeightKg={inputs.vehicleWeightKg} roadTaxEV={roadTaxEV} engineCm3={inputs.engineCm3} roadTaxICE={roadTaxICE} onChange={handleInputChange} />
+        <SavingsSection savingsResult={savingsResult} />
+        <CO2Section co2AnnualKg={co2Annual} />
+        <CommunityBanner />
+        <NextStepsSection operators={operators} />
       </main>
     </div>
   )
 }
+

@@ -24,11 +24,7 @@ export default function LossHeadline({ monthlyLoss }: LossHeadlineProps) {
   const isNegligible = monthlyLoss < 50
 
   return (
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      className={pulse ? 'highlight-pulse' : ''}
-    >
+    <div aria-live="polite" aria-atomic="true" className={pulse ? 'highlight-pulse' : ''}>
       <p className="text-[11px] uppercase tracking-[0.12em] text-ev-accent font-medium mb-2">
         {t('hero.sectionLabel')}
       </p>

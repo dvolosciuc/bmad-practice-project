@@ -1,5 +1,18 @@
 [
   {
+    "id": "home_ac",
+    "name": "Home AC",
+    "variant": "full",
+    "lastVerified": "2026-03-31",
+    "tariffs": [
+      { "region": "centru_sud_standard", "acFromMDL": 3.56 },
+      { "region": "centru_sud_night", "acFromMDL": 2.94 },
+      { "region": "nord_standard", "acFromMDL": 3.95 },
+      { "region": "nord_night", "acFromMDL": 3.43 }
+    ],
+    "appUrl": "https://anre.md/energie-electrica-3-290"
+  },
+  {
     "id": "evpoint",
     "name": "EVPoint",
     "variant": "full",
@@ -9,36 +22,56 @@
       { "region": "nord", "acFromMDL": 7.8, "dcFromMDL": 10.44 }
     ],
     "appStoreUrl": "https://apps.apple.com/md/app/evpoint-moldova/id1536107978",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.evpoint.md"
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.evpoint.md",
+    "appUrl": "https://evpoint.md"
   },
   {
     "id": "echarge",
     "name": "eCharge Moldova",
-    "variant": "placeholder",
+    "variant": "full",
     "lastVerified": "2026-04-30",
+    "tariffs": [
+      { "region": "centru_sud", "acFromMDL": 7.5, "dcFromMDL": 9.5 },
+      { "region": "nord", "acFromMDL": 7.8, "dcFromMDL": 9.99 }
+    ],
     "appStoreUrl": "https://apps.apple.com/md/app/echarge-moldova/id6458590354",
     "playStoreUrl": "https://play.google.com/store/apps/details?id=md.echarge",
     "appUrl": "https://echarge.md"
   },
   {
     "id": "ekofactor",
-    "name": "ekofactor",
-    "variant": "placeholder",
+    "name": "ecofactor",
+    "variant": "full",
     "lastVerified": "2026-04-30",
-    "appUrl": "https://ekofactor.md"
+    "tariffs": [
+      { "region": "nationwide", "acFromMDL": 7.99 }
+    ],
+    "appStoreUrl": "https://apps.apple.com/ua/app/ecofactor-network/id1438716797",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=eu.ecofactor",
+    "appUrl": "https://ecofactortech.com/"
   },
   {
     "id": "ecodrive",
     "name": "eco drive",
-    "variant": "placeholder",
+    "variant": "full",
     "lastVerified": "2026-04-30",
+    "tariffs": [
+      { "region": "nationwide", "acFromMDL": 6.65, "dcFromMDL": 7.77 }
+    ],
+    "appStoreUrl": "https://apps.apple.com/app/eco-drive/id6450720152",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=genergy.android.ecodrive",
     "appUrl": "https://ecodrive.md"
   },
   {
     "id": "gotou",
     "name": "go to-u",
-    "variant": "placeholder",
+    "variant": "full",
     "lastVerified": "2026-04-30",
-    "appUrl": "https://gotou.md"
+    "tariffs": [
+      { "region": "nationwide", "acFromMDL": 6.99, "dcFromMDL": 8.99 }
+    ],
+    "appStoreUrl": "https://apps.apple.com/app/to-u/id1175538017",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.go.tou",
+    "appUrl": "https://goto-u.com"
   }
 ]
