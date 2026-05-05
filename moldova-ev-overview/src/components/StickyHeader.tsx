@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { key: 'nav.map', href: '#map' },
   { key: 'nav.tax', href: '#tax' },
   { key: 'nav.charging', href: '#charging' },
+  { key: 'nav.buy', href: '#next-steps' },
 ]
 
 function scrollWithOffset(e: React.MouseEvent<HTMLAnchorElement>) {

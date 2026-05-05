@@ -107,7 +107,7 @@ export default function App() {
           onChange={handleInputChange}
         />
         <ChargingSection operators={operators} />
-        <NextStepsSection operators={operators} />
+        <NextStepsSection />
       </main>
     </div>
   )
