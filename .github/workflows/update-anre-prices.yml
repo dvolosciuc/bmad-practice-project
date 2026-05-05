@@ -1,0 +1,37 @@
+name: Update ANRE Prices
+
+on:
+  schedule:
+    # Run daily at 05:00 UTC. ANRE typically publishes new prices each Monday
+    # morning; daily runs ensure we catch any mid-week corrections quickly.
+    - cron: '0 5 * * *'
+  workflow_dispatch: # allow manual trigger from the Actions UI
+
+permissions:
+  contents: write   # needed to commit the updated anre.json back to main
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest ANRE prices
+        run: node moldova-ev-overview/scripts/fetch-anre-prices.mjs
+
+      - name: Commit updated prices (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add moldova-ev-overview/src/data/anre.json
+          # Only commit (and therefore trigger a redeploy) when prices changed.
+          git diff --staged --quiet \
+            && echo "No price change — skipping commit." \
+            || git commit -m "chore: update ANRE fuel prices $(date -u +%Y-%m-%d)"
+          git push
