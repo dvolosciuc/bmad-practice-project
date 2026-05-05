@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useInView } from '../lib/useInView'
 
@@ -5,6 +6,7 @@ const EV_999_URL = 'https://999.md/ro/list/transport/cars?o_4_151=12617'
 
 export default function NextStepsSection() {
   const { t } = useTranslation()
+  const iframeRef = useRef<HTMLIFrameElement>(null)
   const [ref] = useInView()
   return (
     <section
@@ -34,6 +36,7 @@ export default function NextStepsSection() {
             </a>
           </div>
           <iframe
+            ref={iframeRef}
             id="ev-999-iframe"
             src={EV_999_URL}
             title={t('nextSteps.find999IframeTitle')}
@@ -41,6 +44,8 @@ export default function NextStepsSection() {
             style={{ height: '720px' }}
             sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
             loading="eager"
+            tabIndex={-1}
+            onLoad={() => iframeRef.current?.blur()}
           />
         </div>
       </div>

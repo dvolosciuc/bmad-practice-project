@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
   plugins: [react(), tailwindcss()],
-  base: command === 'build' ? '/bmad-practice-project/' : '/',
+  // Use '/' when served from a custom domain root; use '/bmad-practice-project/'
+  // if falling back to the default github.io subpath.
+  base: command === 'build' ? '/' : '/',
 }))
 

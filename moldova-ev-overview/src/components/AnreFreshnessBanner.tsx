@@ -6,10 +6,10 @@ interface AnreFreshnessBannerProps {
 }
 
 export default function AnreFreshnessBanner({ status, lastVerified }: AnreFreshnessBannerProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const isLive = status === 'live'
 
-  const displayDate = new Intl.DateTimeFormat('ro-MD', {
+  const displayDate = new Intl.DateTimeFormat(i18n.language, {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -21,9 +21,7 @@ export default function AnreFreshnessBanner({ status, lastVerified }: AnreFreshn
         className={`w-2 h-2 rounded-full flex-shrink-0 ${isLive ? 'bg-ev-accent' : 'bg-ev-warning'}`}
         aria-hidden="true"
       />
-      <p className="text-[13px] text-ev-muted">
-        {isLive ? t('anre.live', { time: displayDate }) : t('anre.fallback', { date: displayDate })}
-      </p>
+      <p className="text-[13px] text-ev-muted">{t('anre.prices', { date: displayDate })}</p>
     </div>
   )
 }
