@@ -41,6 +41,10 @@ export default function SavingsSection({ savingsResult }: SavingsSectionProps) {
 
         <StatGrid savingsResult={savingsResult} />
 
+        <div className="mt-6 rounded-xl border border-ev-accent/30 bg-ev-accent/5 px-5 py-4 flex gap-3 items-start">
+          <span className="text-ev-accent text-lg leading-none mt-0.5" aria-hidden="true">⚡</span>
+          <p className="text-ev-text text-sm leading-relaxed">{t('savings.maintenanceNote')}</p>
+        </div>
       </div>
     </section>
   )
